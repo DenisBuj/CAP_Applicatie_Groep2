@@ -1,0 +1,54 @@
+{
+  "xsappname": "primepath-travel-dashboard",
+  "tenant-mode": "dedicated",
+  "description": "Security descriptor voor het PrimePath Travel Dashboard",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.TravelCoordinator",
+      "description": "Travel Coordinator — read-only toegang tot reisdata"
+    },
+    {
+      "name": "$XSAPPNAME.TeamLead",
+      "description": "Team Lead — read-only toegang tot reisdata"
+    },
+    {
+      "name": "$XSAPPNAME.HRAdmin",
+      "description": "HR Admin — write toegang, dataverrijking en KPI analytics"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "TravelCoordinator",
+      "description": "Travel Coordinator (read-only)",
+      "scope-references": ["$XSAPPNAME.TravelCoordinator"]
+    },
+    {
+      "name": "TeamLead",
+      "description": "Team Lead (read-only)",
+      "scope-references": ["$XSAPPNAME.TeamLead"]
+    },
+    {
+      "name": "HRAdmin",
+      "description": "HR Admin (write)",
+      "scope-references": ["$XSAPPNAME.HRAdmin"]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "PrimePath Travel Coordinator",
+      "description": "PrimePath — Travel Coordinator",
+      "role-template-references": ["$XSAPPNAME.TravelCoordinator"]
+    },
+    {
+      "name": "PrimePath Team Lead",
+      "description": "PrimePath — Team Lead",
+      "role-template-references": ["$XSAPPNAME.TeamLead"]
+    },
+    {
+      "name": "PrimePath HR Admin",
+      "description": "PrimePath — HR Admin",
+      "role-template-references": ["$XSAPPNAME.HRAdmin"]
+    }
+  ]
+}

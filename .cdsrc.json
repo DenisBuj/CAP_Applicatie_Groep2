@@ -9,6 +9,11 @@
     },
     "auth": {
       "kind": "mocked",
+      "users": {
+        "coordinator": { "roles": ["TravelCoordinator"] },
+        "teamlead": { "roles": ["TeamLead"] },
+        "hradmin": { "roles": ["HRAdmin"] }
+      },
       "[production]": {
         "kind": "xsuaa"
       }

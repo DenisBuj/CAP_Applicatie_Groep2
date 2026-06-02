@@ -23,6 +23,7 @@ service TravelService @(path: '/travel') {
 
   /** Medewerkers: TripPin People + EmployeeExtension (ProjectCode, afdeling). */
   @readonly
+  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Employees as projection on trippin.People {
     key UserName,
         FirstName,
@@ -38,6 +39,7 @@ service TravelService @(path: '/travel') {
 
   /** Reizen: lokaal beheerde Status/Budget + TripPin reisdetails (eigenaar, naam, data). */
   @readonly
+  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Trips as projection on primepath.TripExtension {
     key TripId,
         Status,
@@ -52,6 +54,7 @@ service TravelService @(path: '/travel') {
 
   /** Airlines: TripPin Airlines + AirlineExtension (PreferredVendor). */
   @readonly
+  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Airlines as projection on trippin.Airlines {
     key AirlineCode,
         Name,
@@ -60,6 +63,7 @@ service TravelService @(path: '/travel') {
 
   /** Airports: uitsluitend TripPin (geen verrijking). */
   @readonly
+  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Airports as projection on trippin.Airports {
     key IcaoCode,
         IataCode,
@@ -67,9 +71,14 @@ service TravelService @(path: '/travel') {
   };
 
   // ---------------------------------------------------------------------------
-  // WRITE — Admin (verrijkingstabellen). Autorisatie volgt in FASE 4, UI in FASE 8.
+  // WRITE — Admin (verrijkingstabellen). Volledige CRUD uitsluitend voor HRAdmin.
   // ---------------------------------------------------------------------------
+  @(restrict: [{ grant: '*', to: 'HRAdmin' }])
   entity EmployeeExtensions as projection on primepath.EmployeeExtension;
-  entity TripExtensions     as projection on primepath.TripExtension;
-  entity AirlineExtensions  as projection on primepath.AirlineExtension;
+
+  @(restrict: [{ grant: '*', to: 'HRAdmin' }])
+  entity TripExtensions as projection on primepath.TripExtension;
+
+  @(restrict: [{ grant: '*', to: 'HRAdmin' }])
+  entity AirlineExtensions as projection on primepath.AirlineExtension;
 }
