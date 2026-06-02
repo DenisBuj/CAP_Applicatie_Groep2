@@ -45,7 +45,8 @@
     },
     "routing": {
       "routes": [
-        { "pattern": ":?query:", "name": "TripsList", "target": "TripsList" }
+        { "pattern": ":?query:", "name": "TripsList", "target": "TripsList" },
+        { "pattern": "Trips({key}):?query:", "name": "TripsObjectPage", "target": "TripsObjectPage" }
       ],
       "targets": {
         "TripsList": {
@@ -56,7 +57,22 @@
             "settings": {
               "contextPath": "/Trips",
               "variantManagement": "Page",
-              "initialLoad": true
+              "initialLoad": true,
+              "navigation": {
+                "Trips": {
+                  "detail": { "route": "TripsObjectPage" }
+                }
+              }
+            }
+          }
+        },
+        "TripsObjectPage": {
+          "type": "Component",
+          "id": "TripsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Trips"
             }
           }
         }

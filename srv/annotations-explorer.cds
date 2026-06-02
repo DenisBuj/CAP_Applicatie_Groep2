@@ -21,14 +21,32 @@ annotate TravelService.Employees with @(
       Title          : { $Type: 'UI.DataField', Value: FirstName },
       Description    : { $Type: 'UI.DataField', Value: UserName }
     },
-    SelectionFields : [ Gender ],
+    SelectionFields : [ Department, PrimePathProjectCode, Gender ],
     LineItem : [
       { $Type: 'UI.DataField', Value: UserName,             Label: 'Gebruikersnaam' },
       { $Type: 'UI.DataField', Value: FirstName,            Label: 'Voornaam' },
       { $Type: 'UI.DataField', Value: LastName,             Label: 'Achternaam' },
       { $Type: 'UI.DataField', Value: Department,           Label: 'Afdeling' },
       { $Type: 'UI.DataField', Value: PrimePathProjectCode, Label: 'Projectcode' }
-    ]
+    ],
+    // ---- Object Page ----
+    Facets : [
+      { $Type: 'UI.ReferenceFacet', ID: 'GegevensFacet',
+        Label: 'Gegevens',          Target: '@UI.FieldGroup#Details' },
+      { $Type: 'UI.ReferenceFacet', ID: 'ReizenFacet',
+        Label: 'Reisgeschiedenis',  Target: 'Trips/@UI.LineItem' }
+    ],
+    FieldGroup #Details : {
+      Data : [
+        { $Type: 'UI.DataField', Value: UserName,             Label: 'Gebruikersnaam' },
+        { $Type: 'UI.DataField', Value: FirstName,            Label: 'Voornaam' },
+        { $Type: 'UI.DataField', Value: LastName,             Label: 'Achternaam' },
+        { $Type: 'UI.DataField', Value: Gender,               Label: 'Geslacht' },
+        { $Type: 'UI.DataField', Value: Age,                  Label: 'Leeftijd' },
+        { $Type: 'UI.DataField', Value: Department,           Label: 'Afdeling' },
+        { $Type: 'UI.DataField', Value: PrimePathProjectCode, Label: 'Projectcode' }
+      ]
+    }
   }
 ) {
   UserName             @title: 'Gebruikersnaam';
@@ -62,7 +80,24 @@ annotate TravelService.Trips with @(
       { $Type: 'UI.DataField', Value: Budget,    Label: 'Budget' },
       { $Type: 'UI.DataField', Value: StartsAt,  Label: 'Vertrek' },
       { $Type: 'UI.DataField', Value: EndsAt,    Label: 'Terug' }
-    ]
+    ],
+    // ---- Object Page ----
+    Facets : [
+      { $Type: 'UI.ReferenceFacet', ID: 'ReisFacet',
+        Label: 'Reisgegevens', Target: '@UI.FieldGroup#TripDetails' }
+    ],
+    FieldGroup #TripDetails : {
+      Data : [
+        { $Type: 'UI.DataField', Value: TripId,      Label: 'Reis-ID' },
+        { $Type: 'UI.DataField', Value: Name,        Label: 'Naam' },
+        { $Type: 'UI.DataField', Value: Description, Label: 'Omschrijving' },
+        { $Type: 'UI.DataField', Value: Owner,       Label: 'Medewerker' },
+        { $Type: 'UI.DataField', Value: Status,      Label: 'Status', Criticality: StatusCriticality },
+        { $Type: 'UI.DataField', Value: Budget,      Label: 'Budget' },
+        { $Type: 'UI.DataField', Value: StartsAt,    Label: 'Vertrek' },
+        { $Type: 'UI.DataField', Value: EndsAt,      Label: 'Terug' }
+      ]
+    }
   }
 ) {
   TripId      @title: 'Reis-ID';

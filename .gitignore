@@ -15,5 +15,8 @@ mta_archives/
 # Other
 .DS_Store
 
+# Stray nested clone (accidental)
+Untitled/
+
 # @cap-js/cds-typer
 @cds-models

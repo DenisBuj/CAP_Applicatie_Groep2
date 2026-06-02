@@ -7,28 +7,21 @@ const cds = require('@sap/cds');
 module.exports = class TravelService extends cds.ApplicationService {
   async init() {
     const trippin = await cds.connect.to('TripPinService');
-    const { EmployeeExtension, AirlineExtension } = cds.entities('primepath');
+    const { AirlineExtension } = cds.entities('primepath');
 
     // --- READ-delegatie naar TripPin voor de remote-gebaseerde entiteiten ---
     // (projecties op een @cds.persistence.skip remote-entiteit worden niet
     //  automatisch geserveerd; we sturen de query door naar TripPin)
-    this.on('READ', 'Employees', (req) => trippin.run(req.query));
+    // Employees is nu lokaal (People-replica), dus niet meer doorsturen.
     this.on('READ', 'Airlines', (req) => trippin.run(req.query));
     this.on('READ', 'Airports', (req) => trippin.run(req.query));
 
-    // --- Employees: ProjectCode + afdeling uit EmployeeExtension toevoegen ---
-    this.after('READ', 'Employees', async (rows) => {
-      const list = toArray(rows);
-      if (!list.length) return;
-      const ext = await SELECT.from(EmployeeExtension)
-        .where({ UserName: { in: list.map((r) => r.UserName) } });
-      const byKey = index(ext, 'UserName');
-      for (const r of list) {
-        const x = byKey[r.UserName];
-        if (x) {
-          r.PrimePathProjectCode = x.PrimePathProjectCode;
-          r.Department = x.Department;
-        }
+    // --- Replicatie: TripPin People -> lokale People-tabel (bij elke boot) ---
+    cds.once('served', async () => {
+      try {
+        await replicatePeople(trippin);
+      } catch (e) {
+        cds.log('travel').warn('People-replicatie mislukt:', e.message);
       }
     });
 
@@ -53,7 +46,6 @@ module.exports = class TravelService extends cds.ApplicationService {
       for (const r of list) {
         const d = details.get(r.TripId);
         if (!d) continue;
-        r.Owner = d.Owner;
         r.Name = d.Name;
         r.Description = d.Description;
         r.StartsAt = d.StartsAt;
@@ -82,6 +74,34 @@ function toArray(x) {
 
 function index(arr, key) {
   return Object.fromEntries(arr.map((o) => [o[key], o]));
+}
+
+// TripPin PersonGender enum -> leesbare string
+const GENDER = { 0: 'Male', 1: 'Female', 2: 'Unknown' };
+
+/**
+ * Repliceert de TripPin People naar de lokale `primepath.People`-tabel, zodat
+ * Employees lokaal joinbaar/associeerbaar is (drill-down, filters, KPI's).
+ */
+async function replicatePeople(trippin) {
+  const { People } = cds.entities('primepath');
+  const remote = await trippin.run(
+    SELECT.from('TripPinService.People').columns(
+      'UserName', 'FirstName', 'LastName', 'MiddleName', 'Gender', 'Age'
+    )
+  );
+  if (!remote.length) return;
+  const rows = remote.map((p) => ({
+    UserName: p.UserName,
+    FirstName: p.FirstName,
+    LastName: p.LastName,
+    MiddleName: p.MiddleName,
+    Gender: typeof p.Gender === 'number' ? GENDER[p.Gender] : p.Gender,
+    Age: p.Age,
+  }));
+  await DELETE.from(People);
+  await INSERT.into(People).entries(rows);
+  cds.log('travel').info(`People-replicatie: ${rows.length} medewerkers uit TripPin`);
 }
 
 /**

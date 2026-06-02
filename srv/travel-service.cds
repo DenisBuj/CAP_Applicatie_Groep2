@@ -21,20 +21,24 @@ service TravelService @(path: '/travel') {
   // READ / MERGED — Explorer (read-only)
   // ---------------------------------------------------------------------------
 
-  /** Medewerkers: TripPin People + EmployeeExtension (ProjectCode, afdeling). */
+  /**
+   * Medewerkers: lokale People-replica + EmployeeExtension (ProjectCode, afdeling).
+   * Lokaal gebaseerd, dus Department/Projectcode zijn echte (filterbare) kolommen
+   * en de reisgeschiedenis-associatie werkt op DB-niveau.
+   */
   @readonly
   @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
-  entity Employees as projection on trippin.People {
+  entity Employees as projection on primepath.People {
     key UserName,
         FirstName,
         LastName,
         MiddleName,
         Gender,
         Age,
-        Emails,
-        // verrijking (gevuld in after-READ):
-        virtual null as PrimePathProjectCode : String(40),
-        virtual null as Department           : String(80)
+        ext.PrimePathProjectCode as PrimePathProjectCode,
+        ext.Department           as Department,
+        // drill-down: de reizen van deze medewerker (reisgeschiedenis)
+        trips                    as Trips : redirected to Trips
   };
 
   /** Reizen: lokaal beheerde Status/Budget + TripPin reisdetails (eigenaar, naam, data). */
@@ -42,16 +46,18 @@ service TravelService @(path: '/travel') {
   @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Trips as projection on primepath.TripExtension {
     key TripId,
+        Owner,
         Status,
         Budget,
         // verrijking uit TripPin (gevuld in after-READ):
-        virtual null as Owner            : String(255),
         virtual null as Name             : String,
         virtual null as Description      : String,
         virtual null as StartsAt         : DateTime,
         virtual null as EndsAt           : DateTime,
         // 1=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
-        virtual null as StatusCriticality : Integer
+        virtual null as StatusCriticality : Integer,
+        // drill-down terug naar de medewerker
+        Employee : Association to one Employees on Employee.UserName = Owner
   };
 
   /** Airlines: TripPin Airlines + AirlineExtension (PreferredVendor). */

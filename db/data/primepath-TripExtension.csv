@@ -1,6 +1,6 @@
-TripId;Status;Budget
-0;Afgerond;3000.00
-1;Onderweg;2000.00
-2;Gepland;2650.00
-3;Afgerond;5000.00
-4;Gepland;11000.00
+TripId;Owner;Status;Budget
+0;russellwhyte;Afgerond;3000.00
+1;russellwhyte;Onderweg;2000.00
+2;russellwhyte;Gepland;2650.00
+3;scottketchum;Afgerond;5000.00
+4;scottketchum;Gepland;11000.00
