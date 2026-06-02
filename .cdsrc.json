@@ -10,6 +10,10 @@
     "auth": {
       "kind": "mocked",
       "users": {
+        "Admin": {
+          "password": "Admin",
+          "roles": ["TravelCoordinator", "TeamLead", "HRAdmin"]
+        },
         "coordinator": { "roles": ["TravelCoordinator"] },
         "teamlead": { "roles": ["TeamLead"] },
         "hradmin": { "roles": ["HRAdmin"] }
