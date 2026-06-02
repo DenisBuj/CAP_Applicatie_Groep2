@@ -1,0 +1,26 @@
+{
+  "name": "primepath-travel-dashboard",
+  "version": "1.0.0",
+  "description": "PrimePath Travel Dashboard — SAP CAP full-stack travel management application (Erasmushogeschool Brussel / Flexso)",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^20 || ^22 || ^24"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "build": "cds build --production"
+  },
+  "dependencies": {
+    "@sap/cds": "^9.9.1",
+    "express": "^5.2.1",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4.0",
+    "@sap/cds-dk": "^9.9.2"
+  }
+}

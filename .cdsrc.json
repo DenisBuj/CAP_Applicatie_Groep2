@@ -1,0 +1,30 @@
+{
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "[production]": {
+        "kind": "hana",
+        "deploy-format": "hdbtable"
+      }
+    },
+    "auth": {
+      "kind": "mocked",
+      "[production]": {
+        "kind": "xsuaa"
+      }
+    },
+    "TripPinService": {
+      "kind": "odata-v4",
+      "model": "srv/external/TripPinService",
+      "credentials": {
+        "url": "https://services.odata.org/TripPinRESTierService"
+      },
+      "[production]": {
+        "credentials": {
+          "destination": "TripPin",
+          "path": "/"
+        }
+      }
+    }
+  }
+}
