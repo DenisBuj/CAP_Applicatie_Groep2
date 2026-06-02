@@ -45,11 +45,13 @@ service TravelService @(path: '/travel') {
         Status,
         Budget,
         // verrijking uit TripPin (gevuld in after-READ):
-        virtual null as Owner       : String(255),
-        virtual null as Name        : String,
-        virtual null as Description : String,
-        virtual null as StartsAt    : DateTime,
-        virtual null as EndsAt      : DateTime
+        virtual null as Owner            : String(255),
+        virtual null as Name             : String,
+        virtual null as Description      : String,
+        virtual null as StartsAt         : DateTime,
+        virtual null as EndsAt           : DateTime,
+        // 1=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
+        virtual null as StatusCriticality : Integer
   };
 
   /** Airlines: TripPin Airlines + AirlineExtension (PreferredVendor). */

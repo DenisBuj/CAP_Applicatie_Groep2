@@ -61,6 +61,8 @@ module.exports = class TravelService extends cds.ApplicationService {
         // val terug op TripPin-budget als er lokaal (nog) geen budget gezet is
         if (r.Budget == null && d.Budget != null) r.Budget = d.Budget;
       }
+      // criticality voor gekleurde status-cel in Fiori
+      for (const r of list) r.StatusCriticality = CRITICALITY[r.Status] ?? 0;
     });
 
     await super.init();
@@ -70,6 +72,9 @@ module.exports = class TravelService extends cds.ApplicationService {
 // -----------------------------------------------------------------------------
 // Helpers
 // -----------------------------------------------------------------------------
+
+// Fiori criticality: 1=neutraal, 2=kritisch/oranje, 3=positief/groen
+const CRITICALITY = { Gepland: 1, Onderweg: 2, Afgerond: 3 };
 
 function toArray(x) {
   return Array.isArray(x) ? x : x ? [x] : [];
