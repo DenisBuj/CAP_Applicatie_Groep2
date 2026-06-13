@@ -5,8 +5,8 @@ using { TravelService } from './travel-service';
 // Coördinator & Team Lead gebruiken deze List Reports.
 //
 // NB: filteren (SelectionFields) gebeurt alleen op velden die op DB-/remote-niveau
-// gefilterd kunnen worden. Verrijkte (virtual) velden — Department, Projectcode,
-// PreferredVendor — staan als kolom getoond maar niet als filter (zie FASE-3 nota).
+// gefilterd kunnen worden. Verrijkte (virtual) velden zoals PreferredVendor staan
+// als kolom getoond maar (nog) niet als filter.
 //
 
 // ============================================================================
@@ -21,12 +21,11 @@ annotate TravelService.Employees with @(
       Title          : { $Type: 'UI.DataField', Value: FirstName },
       Description    : { $Type: 'UI.DataField', Value: UserName }
     },
-    SelectionFields : [ Department, PrimePathProjectCode, Gender ],
+    SelectionFields : [ PrimePathProjectCode, Gender ],
     LineItem : [
       { $Type: 'UI.DataField', Value: UserName,             Label: 'Gebruikersnaam' },
       { $Type: 'UI.DataField', Value: FirstName,            Label: 'Voornaam' },
       { $Type: 'UI.DataField', Value: LastName,             Label: 'Achternaam' },
-      { $Type: 'UI.DataField', Value: Department,           Label: 'Afdeling' },
       { $Type: 'UI.DataField', Value: PrimePathProjectCode, Label: 'Projectcode' }
     ],
     // ---- Object Page ----
@@ -43,7 +42,6 @@ annotate TravelService.Employees with @(
         { $Type: 'UI.DataField', Value: LastName,             Label: 'Achternaam' },
         { $Type: 'UI.DataField', Value: Gender,               Label: 'Geslacht' },
         { $Type: 'UI.DataField', Value: Age,                  Label: 'Leeftijd' },
-        { $Type: 'UI.DataField', Value: Department,           Label: 'Afdeling' },
         { $Type: 'UI.DataField', Value: PrimePathProjectCode, Label: 'Projectcode' }
       ]
     }
@@ -55,7 +53,6 @@ annotate TravelService.Employees with @(
   MiddleName           @title: 'Tweede naam';
   Gender               @title: 'Geslacht';
   Age                  @title: 'Leeftijd';
-  Department           @title: 'Afdeling';
   PrimePathProjectCode @title: 'Projectcode';
 };
 
@@ -76,10 +73,11 @@ annotate TravelService.Trips with @(
       { $Type: 'UI.DataField', Value: TripId,   Label: 'Reis-ID' },
       { $Type: 'UI.DataField', Value: Name,      Label: 'Naam' },
       { $Type: 'UI.DataField', Value: Owner,     Label: 'Medewerker' },
-      { $Type: 'UI.DataField', Value: Status,    Label: 'Status', Criticality: StatusCriticality },
-      { $Type: 'UI.DataField', Value: Budget,    Label: 'Budget' },
-      { $Type: 'UI.DataField', Value: StartsAt,  Label: 'Vertrek' },
-      { $Type: 'UI.DataField', Value: EndsAt,    Label: 'Terug' }
+      { $Type: 'UI.DataField', Value: Status,     Label: 'Status', Criticality: StatusCriticality },
+      { $Type: 'UI.DataField', Value: CostCenter, Label: 'Kostenplaats' },
+      { $Type: 'UI.DataField', Value: Budget,     Label: 'Budget' },
+      { $Type: 'UI.DataField', Value: StartsAt,   Label: 'Vertrek' },
+      { $Type: 'UI.DataField', Value: EndsAt,     Label: 'Terug' }
     ],
     // ---- Object Page ----
     Facets : [
@@ -93,6 +91,7 @@ annotate TravelService.Trips with @(
         { $Type: 'UI.DataField', Value: Description, Label: 'Omschrijving' },
         { $Type: 'UI.DataField', Value: Owner,       Label: 'Medewerker' },
         { $Type: 'UI.DataField', Value: Status,      Label: 'Status', Criticality: StatusCriticality },
+        { $Type: 'UI.DataField', Value: CostCenter,  Label: 'Kostenplaats' },
         { $Type: 'UI.DataField', Value: Budget,      Label: 'Budget' },
         { $Type: 'UI.DataField', Value: StartsAt,    Label: 'Vertrek' },
         { $Type: 'UI.DataField', Value: EndsAt,      Label: 'Terug' }
@@ -104,6 +103,7 @@ annotate TravelService.Trips with @(
   Name        @title: 'Naam';
   Owner       @title: 'Medewerker';
   Status      @title: 'Status';
+  CostCenter  @title: 'Kostenplaats';
   Budget      @title: 'Budget'  @Measures.ISOCurrency: 'EUR';
   StartsAt    @title: 'Vertrek';
   EndsAt      @title: 'Terug';

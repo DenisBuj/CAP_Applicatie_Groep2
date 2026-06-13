@@ -7,8 +7,8 @@ Erasmushogeschool Brussel / Flexso — Denis Bujorean, Adam Yousfi & Adam Akkay.
 - SAP CAP (Node.js) op SAP BTP Cloud Foundry
 - SAP HANA Cloud (productie) / SQLite (lokaal)
 - TripPin OData V4 als externe databron (mashup)
-- SAP Fiori Elements UI + SAP Build Work Zone
-- XSUAA Role-Based Access Control
+- SAP Fiori Elements UI (3 apps) via HTML5 App Repository + Managed Approuter
+- MVP zonder rolafdwinging; XSUAA RBAC is een toekomstige uitbreiding
 
 ## Lokaal starten
 ```bash

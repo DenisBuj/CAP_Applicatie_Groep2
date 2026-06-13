@@ -1,6 +1,6 @@
-TripId;Owner;Status;Budget
-0;russellwhyte;Afgerond;3000.00
-1;russellwhyte;Onderweg;2000.00
-2;russellwhyte;Gepland;2650.00
-3;scottketchum;Afgerond;5000.00
-4;scottketchum;Gepland;11000.00
+Owner;TripId;Status;CostCenter
+russellwhyte;0;Afgerond;CC-SALES
+russellwhyte;1;Onderweg;CC-SALES
+russellwhyte;2;Gepland;CC-SALES
+scottketchum;3;Afgerond;CC-ENG
+scottketchum;4;Gepland;CC-ENG

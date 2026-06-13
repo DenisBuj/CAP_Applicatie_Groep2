@@ -22,12 +22,11 @@ service TravelService @(path: '/travel') {
   // ---------------------------------------------------------------------------
 
   /**
-   * Medewerkers: lokale People-replica + EmployeeExtension (ProjectCode, afdeling).
-   * Lokaal gebaseerd, dus Department/Projectcode zijn echte (filterbare) kolommen
+   * Medewerkers: lokale People-replica + EmployeeExtension (PrimePathProjectCode).
+   * Lokaal gebaseerd, dus Projectcode is een echte (filterbare) kolom
    * en de reisgeschiedenis-associatie werkt op DB-niveau.
    */
   @readonly
-  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Employees as projection on primepath.People {
     key UserName,
         FirstName,
@@ -36,24 +35,23 @@ service TravelService @(path: '/travel') {
         Gender,
         Age,
         ext.PrimePathProjectCode as PrimePathProjectCode,
-        ext.Department           as Department,
         // drill-down: de reizen van deze medewerker (reisgeschiedenis)
         trips                    as Trips : redirected to Trips
   };
 
-  /** Reizen: lokaal beheerde Status/Budget + TripPin reisdetails (eigenaar, naam, data). */
+  /** Reizen: lokaal beheerde Status/CostCenter + TripPin reisdetails (naam, data, budget). */
   @readonly
-  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Trips as projection on primepath.TripExtension {
+    key Owner,
     key TripId,
-        Owner,
         Status,
-        Budget,
+        CostCenter,
         // verrijking uit TripPin (gevuld in after-READ):
         virtual null as Name             : String,
         virtual null as Description      : String,
         virtual null as StartsAt         : DateTime,
         virtual null as EndsAt           : DateTime,
+        virtual null as Budget           : Decimal(15, 2),
         // 1=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
         virtual null as StatusCriticality : Integer,
         // drill-down terug naar de medewerker
@@ -62,7 +60,6 @@ service TravelService @(path: '/travel') {
 
   /** Airlines: TripPin Airlines + AirlineExtension (PreferredVendor). */
   @readonly
-  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Airlines as projection on trippin.Airlines {
     key AirlineCode,
         Name,
@@ -71,22 +68,21 @@ service TravelService @(path: '/travel') {
 
   /** Airports: uitsluitend TripPin (geen verrijking). */
   @readonly
-  @(restrict: [{ grant: 'READ', to: ['TravelCoordinator', 'TeamLead', 'HRAdmin'] }])
   entity Airports as projection on trippin.Airports {
     key IcaoCode,
         IataCode,
-        Name
+        Name,
+        Location
   };
 
   // ---------------------------------------------------------------------------
-  // WRITE — Admin (verrijkingstabellen). Volledige CRUD uitsluitend voor HRAdmin.
+  // WRITE — verrijkingstabellen (PrimePath-velden). CRUD-doelen voor de UI.
+  // MVP: geen rolafdwinging — iedereen kan de extensievelden bewerken
+  // (RBAC via XSUAA is een toekomstige uitbreiding, zie analyses).
   // ---------------------------------------------------------------------------
-  @(restrict: [{ grant: '*', to: 'HRAdmin' }])
   entity EmployeeExtensions as projection on primepath.EmployeeExtension;
 
-  @(restrict: [{ grant: '*', to: 'HRAdmin' }])
   entity TripExtensions as projection on primepath.TripExtension;
 
-  @(restrict: [{ grant: '*', to: 'HRAdmin' }])
   entity AirlineExtensions as projection on primepath.AirlineExtension;
 }

@@ -44,14 +44,14 @@ module.exports = class TravelService extends cds.ApplicationService {
       if (!list.length) return;
       const details = await getTripDetails(trippin);
       for (const r of list) {
-        const d = details.get(r.TripId);
+        const d = details.get(tripKey(r.Owner, r.TripId));
         if (!d) continue;
         r.Name = d.Name;
         r.Description = d.Description;
         r.StartsAt = d.StartsAt;
         r.EndsAt = d.EndsAt;
-        // val terug op TripPin-budget als er lokaal (nog) geen budget gezet is
-        if (r.Budget == null && d.Budget != null) r.Budget = d.Budget;
+        // Budget komt read-only uit TripPin
+        r.Budget = d.Budget;
       }
       // criticality voor gekleurde status-cel in Fiori
       for (const r of list) r.StatusCriticality = CRITICALITY[r.Status] ?? 0;
@@ -104,10 +104,16 @@ async function replicatePeople(trippin) {
   cds.log('travel').info(`People-replicatie: ${rows.length} medewerkers uit TripPin`);
 }
 
+// Samengestelde sleutel Owner + TripId (gedeelde trips delen een TripId).
+function tripKey(owner, tripId) {
+  return `${owner}/${tripId}`;
+}
+
 /**
  * Haalt alle TripPin-reisdetails op (People $expand=Trips) en bouwt een
- * Map TripId -> { Owner, Name, Description, StartsAt, EndsAt, Budget }.
- * TripPin heeft geen top-level /Trips set, dus we lopen via People.
+ * Map "Owner/TripId" -> { Owner, Name, Description, StartsAt, EndsAt, Budget }.
+ * TripPin heeft geen top-level /Trips set, dus we lopen via People. Gedeelde
+ * trips blijven per eigenaar als aparte sleutel behouden (geen dedup).
  */
 async function getTripDetails(trippin) {
   const people = await trippin.run(
@@ -119,8 +125,7 @@ async function getTripDetails(trippin) {
   const map = new Map();
   for (const person of people) {
     for (const t of person.Trips || []) {
-      if (map.has(t.TripId)) continue; // gedeelde trip: eerste eigenaar wint
-      map.set(t.TripId, {
+      map.set(tripKey(person.UserName, t.TripId), {
         Owner: person.UserName,
         Name: t.Name,
         Description: t.Description,

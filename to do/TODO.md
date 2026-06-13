@@ -22,33 +22,42 @@ rechtgetrokken (zie hieronder), want de analyses zijn nu de definitieve blauwdru
 
 ---
 
-## ⚠️ Code wijkt af van de FINALE analyses — rechttrekken (eerst doen)
+## ⚠️ Code wijkt af van de FINALE analyses — rechttrekken
 
-> Deze stonden vorige keer als "open beslissingen". De finale analyses hebben ze nu
-> beslist, dus de actie is telkens: **code aanpassen zodat het overeenkomt met de docs.**
+> Foundation-batch uitgevoerd op 13 juni (compileert + deployt schoon naar SQLite).
+> ✅ = gedaan, ⏳ = blijft openstaan.
 
-| # | Afwijking code ↔ finale analyse | Vereiste actie |
-|---|----------------------------------|----------------|
-| C1 | **Composite key ontbreekt** (NIEUW in finale TA): `TripExtensions` moet key `UserName + TripId` hebben omdat een TripId niet uniek is over gedeelde trips. Code heeft enkel `key TripId` en laat gedeelde trips vallen ("eerste eigenaar wint", `travel-service.js`) | Samengestelde key `UserName + TripId` invoeren; gedeelde trips niet meer droppen |
-| C2 | **Trips-bron verkeerd**: TA wil `Trips` als geaggregeerde set van álle TripPin-reizen; code projecteert op lokale `TripExtension` (alleen geseede rijen zichtbaar) | `Trips` baseren op gerepliceerde/geaggregeerde TripPin-reizen, verrijkt met de extensie (zie D1) |
-| C3 | **CostCenter ontbreekt, lokale Budget te veel**: finale TA = `TripExtensions {Status, CostCenter}`, Budget komt read-only uit TripPin | `CostCenter : String` toevoegen; lokaal `Budget`-veld verwijderen (TripPin-budget tonen) |
-| C4 | **RBAC wordt afgedwongen** terwijl finale FA + TA RBAC **expliciet (2×) buiten de MVP** zetten ("alle gebruikers dezelfde toegang"). Erger: de `@restrict`/`@readonly` blokkeert het verplichte bewerken (FR-008/FR-011) | `@readonly` + `@restrict` op de service weghalen zodat iedereen kan bewerken (draft). XSUAA-scaffolding mag als gedocumenteerde "toekomstige uitbreiding" blijven, maar **niet afgedwongen** |
-| C5 | **Verkeerd TripPin-endpoint**: TA kiest bewust `TripPinService`; `.cdsrc.json` wijst naar `TripPinRESTierService` | URL omzetten naar TripPinService en hertesten |
-| C6 | **Timeline-app**: finale FA zet tijdlijnvisualisatie expliciet out of scope; finale TA schrijft **precies 3 apps** voor (Trips, Employees, Airlines/Insights). `app/explorer/timeline/` hoort er niet | Timeline-app verwijderen |
-| C7 | **Department-veld** komt in géén FR voor (finale FA: medewerker = enkel projectcode); comments citeren FR-002/003 onterecht | `Department` schrappen uit `schema.cds` / `People` / annotaties |
-| C8 | **Readme noemt "SAP Build Work Zone"**: finale TA schrijft Managed Approuter voor | Readme corrigeren (Managed Approuter) |
-| C9 | **Airports**: finale TA = key `IcaoCode` + `Name, IataCode, Location`; code mist `Location` | `Location` toevoegen |
+| # | Afwijking code ↔ finale analyse | Status |
+|---|----------------------------------|--------|
+| C1 | **Composite key**: `TripExtension` key = `Owner + TripId`; gedeelde trips worden niet meer gedropt (`travel-service.js`) | ✅ gedaan |
+| C2 | **Trips-bron**: TA wil `Trips` als geaggregeerde set van álle TripPin-reizen; code projecteert nog op lokale `TripExtension` (alleen geseede rijen zichtbaar) | ⏳ open → **D1** (groter stuk werk, 2e stap) |
+| C3 | **CostCenter i.p.v. lokale Budget**: extensie = `{Status, CostCenter}`, Budget komt read-only uit TripPin | ✅ gedaan |
+| C4 | **RBAC weg**: `@restrict` van de service af; merged views blijven `@readonly`, extensie-entiteiten zijn nu vrije CRUD voor iedereen (MVP). XSUAA `xs-security.json` blijft als gedocumenteerde toekomst-optie staan | ✅ gedaan |
+| C5 | **TripPin-endpoint**: `.cdsrc.json` wijst naar `…/TripPinRESTierService` | ⏳ bewust **niet** gewijzigd — zie nota onder de tabel |
+| C6 | **Timeline-app** verwijderd (`app/explorer/timeline/`); nog 3 apps over: trips, employees, airlines | ✅ gedaan |
+| C7 | **Department-veld** geschrapt uit schema + annotaties + seed-CSV | ✅ gedaan |
+| C8 | **Readme** gecorrigeerd: Managed Approuter i.p.v. "SAP Build Work Zone" | ✅ gedaan |
+| C9 | **Airports.Location** toegevoegd; `db.sqlite` blijkt al untracked (`*.sqlite` in `.gitignore`) | ✅ gedaan |
+
+> **Nota bij C5:** de CAP-remote-service heet `TripPinService` (zoals in de TA en de
+> geïmporteerde `.edmx`); enkel de *URL* is het `TripPinRESTierService`-endpoint — en dat
+> is net het **sessieloze** endpoint dat de TA wil ("geen sessie-keys in de URL"). De
+> bewoording in de TA ("TripPinService i.p.v. TripPinRESTierService") is dus intern
+> tegenstrijdig. Ik heb de werkende URL niet aangepast om de connectiviteit niet te breken.
+> Productie gebruikt sowieso de BTP-destination **TripPin** (zie `[production]`), dus de
+> dev-URL is enkel lokaal relevant. → Team: bevestigen tegen de echte destination.
 
 ---
 
-## Wat is er al (maar deels te corrigeren) 🟡
+## Wat is er al ✅ (foundation-batch verwerkt)
 
-- [x] Datamodel met extensies + People-replica + seed-CSV's — *maar* key/CostCenter/Department fixen (C1, C3, C7)
-- [x] TripPin remote service geïmporteerd (`cds import`)
-- [x] Mashup-service met after-READ-verrijking + People-replicatie bij boot
-- [x] Explorer List Reports + Object Pages: Employees, Trips, Airlines (+ annotaties) — *maar* herschikken naar 3 persona-apps, filters & editing toevoegen
-- [x] StatusCriticality-kleurcodering op Trips
-- [ ] ~~RBAC-fundament~~ — buiten MVP-scope, afdwinging weghalen (C4)
+- [x] Datamodel: composite key, CostCenter, Department weg, Airports.Location (C1, C3, C7, C9)
+- [x] RBAC-afdwinging verwijderd; extensie-entiteiten vrije CRUD (C4)
+- [x] Shared trips behouden + keyed op Owner+TripId in de mashup-handler (C1)
+- [x] Timeline-app verwijderd, readme gecorrigeerd (C6, C8)
+- [x] Seed-CSV's bijgewerkt; model compileert + deployt schoon naar SQLite
+- [x] TripPin remote service geïmporteerd; mashup-service met after-READ + People-replicatie
+- [x] Explorer List Reports + Object Pages: Employees, Trips, Airlines — *nog* herschikken naar 3 persona-apps, filters & draft-editing toevoegen
 
 ---
 
@@ -57,11 +66,11 @@ rechtgetrokken (zie hieronder), want de analyses zijn nu de definitieve blauwdru
 | # | Taak | FR / fix | Prio |
 |---|------|----------|------|
 | D1 | **Trips als volledige geaggregeerde set**: alle TripPin-reizen via People `$expand=Trips` ontsluiten, gerepliceerd zodat `StartsAt`/`EndsAt`/`Name` echte (filterbare, sorteerbare) kolommen worden; verrijken met `Status`/`CostCenter` uit de extensie | C2, FR-002, FR-006 | Hoog |
-| D2 | **Datamodel-fixes**: composite key `UserName+TripId`, `CostCenter` toevoegen, lokale `Budget` weg, `Department` weg, `Airports.Location` toevoegen | C1, C3, C7, C9 | Hoog |
-| D3 | **RBAC-afdwinging weghalen**: `@readonly`/`@restrict` van de service af zodat draft-editing voor iedereen werkt; XSUAA enkel als gedocumenteerde toekomst-optie laten staan | C4, FR-008, FR-011 | Hoog |
+| ✅ D2 | **Datamodel-fixes**: composite key `Owner+TripId`, `CostCenter` toegevoegd, lokale `Budget` weg, `Department` weg, `Airports.Location` toegevoegd | C1, C3, C7, C9 | **gedaan** |
+| ✅ D3 | **RBAC-afdwinging weggehaald**: `@restrict` van de service af; extensie-entiteiten zijn vrije CRUD; XSUAA blijft als toekomst-optie gedocumenteerd | C4, FR-008, FR-011 | **gedaan** |
 | D4 | **Vluchten ontsluiten**: TripPin `PlanItems/Flights` modelleren en koppelen aan Trips (vlucht → airline → vertrek-/aankomstluchthaven) | FR-007 | Hoog |
 | D5 | **KPI-handler**: aggregaties in de CAP-service — totaal reizen, aantal medewerkers "op reis" (`StartsAt ≤ vandaag ≤ EndsAt`), meest gebruikte airlines (op **aantal vluchten**) | FR-001, FR-009 | Hoog |
-| D6 | **TripPin-endpoint omzetten** naar TripPinService; lokaal hertesten | C5 | Middel |
+| ✅ D6 | **TripPin-endpoint**: onderzocht — URL is al het sessieloze endpoint dat de TA bedoelt; bewust niet gewijzigd (zie nota C5) | C5 | **afgehandeld** |
 | D7 | **`mta.yaml` afmaken**: HTML5-modules voor de **3 UI-apps**, HTML5 App Repo (host), **Managed Approuter**, destination service; TripPin-destination aanmaken in BTP | — | Middel |
 | D8 | Deploy `mbt build` + `cf deploy` naar CF Trial; HANA-binding verifiëren; trial-verlenging inplannen (elke 30 d.) | — | Middel |
 | D9 | `db.sqlite` uit git + `.gitignore`; verifiëren dat repo **private** op GitHub staat (verplicht volgens TA) | — | Laag |

@@ -21,13 +21,11 @@ type TripStatus : String enum {
 /**
  * Verrijking voor TripPin `People`.
  * Key = UserName (TripPin Person.UserName).
- * `Department` is toegevoegd: TripPin Person kent geen afdeling, maar
- * FR-002/FR-003 vereisen filteren/zoeken op afdeling.
+ * Enkel PrimePathProjectCode — de overige medewerkervelden komen uit TripPin.
  */
 entity EmployeeExtension : managed {
   key UserName              : String(255);
       PrimePathProjectCode  : String(40);
-      Department            : String(80);
 }
 
 /**
@@ -49,17 +47,16 @@ entity People {
 
 /**
  * Verrijking voor TripPin `Trips` (alleen bereikbaar via People/Trips).
- * Key = TripId (TripPin Trip.TripId, Edm.Int32 — globaal uniek).
- * NB: TripPin heeft zelf al een (read-only, float) Budget. Dit is het door
- * PrimePath beheerde budget (Decimal) dat in de mashup voorrang krijgt.
+ * Samengestelde key Owner + TripId: een TripPin TripId is niet gegarandeerd
+ * uniek over personen heen bij gedeelde trips, daarom hoort de Owner (= UserName)
+ * mee in de sleutel (zie finale Technische Analyse).
+ * Budget komt read-only uit TripPin; hier bewaren we enkel Status + CostCenter.
  */
 entity TripExtension : managed {
-  key TripId  : Integer;
-      // Owner = UserName van de medewerker (foreign key naar People/Employees).
-      // Lokaal opgeslagen zodat de drill-down medewerker -> reizen op DB werkt.
-      Owner   : String(255);
-      Status  : TripStatus default #Gepland;
-      Budget  : Decimal(15, 2);
+  key Owner      : String(255);
+  key TripId     : Integer;
+      Status     : TripStatus default #Gepland;
+      CostCenter : String(40);
 }
 
 /**
