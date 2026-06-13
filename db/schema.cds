@@ -47,6 +47,24 @@ entity People {
 }
 
 /**
+ * Lokale replica van TripPin PlanItems/Flights, geaggregeerd via People
+ * $expand=Trips/PlanItems (zie srv/travel-service.js: replicateFlights).
+ * Samengestelde sleutel Owner + TripId + PlanItemId.
+ * Bevat alleen vluchten (gefilterd op @odata.type = Flight) voor FR-007/FR-009.
+ */
+entity Flights {
+  key Owner        : String(255);
+  key TripId       : Integer;
+  key PlanItemId   : Integer;
+      FlightNumber : String(10);
+      AirlineCode  : String(3);
+      FromAirport  : String(4);   // ICAO-code vertrekhaven
+      ToAirport    : String(4);   // ICAO-code aankomstluchthaven
+      StartsAt     : DateTime;
+      EndsAt       : DateTime;
+}
+
+/**
  * Lokale replica van alle TripPin-reizen, geaggregeerd via People $expand=Trips
  * (zie srv/travel-service.js: replicateTrips). Bevat echte kolommen zodat
  * filteren en sorteren op periode op DB-niveau werken (FR-002, FR-006).

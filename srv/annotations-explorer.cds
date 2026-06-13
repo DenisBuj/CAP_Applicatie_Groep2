@@ -82,7 +82,10 @@ annotate TravelService.Trips with @(
     // ---- Object Page ----
     Facets : [
       { $Type: 'UI.ReferenceFacet', ID: 'ReisFacet',
-        Label: 'Reisgegevens', Target: '@UI.FieldGroup#TripDetails' }
+        Label: 'Reisgegevens', Target: '@UI.FieldGroup#TripDetails' },
+      // FR-007: vluchten per reis (airline + vertrek-/aankomstluchthaven)
+      { $Type: 'UI.ReferenceFacet', ID: 'VluchtenFacet',
+        Label: 'Vluchten',    Target: 'Flights/@UI.LineItem' }
     ],
     FieldGroup #TripDetails : {
       Data : [
@@ -108,6 +111,36 @@ annotate TravelService.Trips with @(
   StartsAt    @title: 'Vertrek';
   EndsAt      @title: 'Terug';
   Description @title: 'Omschrijving';
+};
+
+// ============================================================================
+// Flights  (lokale replica van TripPin PlanItems/Flights)  FR-007
+// ============================================================================
+annotate TravelService.Flights with @(
+  UI: {
+    HeaderInfo: {
+      $Type          : 'UI.HeaderInfoType',
+      TypeName       : 'Vlucht',
+      TypeNamePlural : 'Vluchten',
+      Title          : { $Type: 'UI.DataField', Value: FlightNumber },
+      Description    : { $Type: 'UI.DataField', Value: AirlineCode }
+    },
+    LineItem : [
+      { $Type: 'UI.DataField', Value: FlightNumber, Label: 'Vluchtnummer' },
+      { $Type: 'UI.DataField', Value: AirlineCode,  Label: 'Airline' },
+      { $Type: 'UI.DataField', Value: FromAirport,  Label: 'Vertrek (ICAO)' },
+      { $Type: 'UI.DataField', Value: ToAirport,    Label: 'Aankomst (ICAO)' },
+      { $Type: 'UI.DataField', Value: StartsAt,     Label: 'Vertrekdatum' },
+      { $Type: 'UI.DataField', Value: EndsAt,       Label: 'Aankomstdatum' }
+    ]
+  }
+) {
+  FlightNumber @title: 'Vluchtnummer';
+  AirlineCode  @title: 'Airline';
+  FromAirport  @title: 'Vertrek (ICAO)';
+  ToAirport    @title: 'Aankomst (ICAO)';
+  StartsAt     @title: 'Vertrekdatum';
+  EndsAt       @title: 'Aankomstdatum';
 };
 
 // ============================================================================

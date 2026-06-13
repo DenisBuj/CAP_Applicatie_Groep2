@@ -9,11 +9,11 @@ using { primepath } from '../db/schema';
 //
 // Bronnen:
 //   * Employees   -> lokale People-replica + EmployeeExtension (join via ext)
-//   * Trips       -> lokale Trips-replica (gevuld via replicateTrips bij boot),
-//                    Status/CostCenter al samengevoegd; filteren/sorteren op
-//                    periode en status werken volledig op DB-niveau.
-//   * Airlines    -> REMOTE TripPin-service, verrijkt met AirlineExtension.
-//   * Airports    -> REMOTE TripPin-service (puur read-only, geen extensie).
+//   * Trips       -> lokale Trips-replica + Flights-associatie (FR-006/007)
+//   * Flights     -> lokale Flights-replica (gevuld via replicateFlights bij boot)
+//   * Airlines    -> REMOTE TripPin-service + AirlineExtension (PreferredVendor,
+//                    FlightCount berekend in after-handler)
+//   * Airports    -> REMOTE TripPin-service (puur read-only, geen extensie)
 //
 service TravelService @(path: '/travel') {
 
@@ -42,7 +42,8 @@ service TravelService @(path: '/travel') {
   /**
    * Reizen: gebaseerd op de lokale Trips-replica (gevuld bij boot via replicateTrips).
    * Alle kolommen zijn echte DB-velden → filteren op StartsAt/EndsAt/Status werkt
-   * op DB-niveau (FR-002, FR-006). StatusCriticality is virtual (berekend in handler).
+   * op DB-niveau (FR-002, FR-006). Flights-associatie voor drill-down naar vluchten
+   * per reis (FR-007). StatusCriticality is virtual (berekend in handler).
    */
   @readonly
   entity Trips as projection on primepath.Trips {
@@ -58,15 +59,47 @@ service TravelService @(path: '/travel') {
         // 1=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
         virtual null as StatusCriticality : Integer,
         // drill-down terug naar de medewerker
-        Employee : Association to one Employees on Employee.UserName = Owner
+        Employee : Association to one Employees on Employee.UserName = Owner,
+        // drill-down naar de vluchten van deze reis (FR-007)
+        Flights  : Association to many Flights
+                     on Flights.Owner = Owner and Flights.TripId = TripId
   };
 
-  /** Airlines: TripPin Airlines + AirlineExtension (PreferredVendor). */
+  /**
+   * Vluchten: lokale replica van TripPin PlanItems/Flights (via replicateFlights).
+   * Bevat AirlineCode, FromAirport, ToAirport als ICAO/codes + navigaties
+   * naar Airlines en Airports voor drill-down (FR-007).
+   */
+  @readonly
+  entity Flights as projection on primepath.Flights {
+    key Owner,
+    key TripId,
+    key PlanItemId,
+        FlightNumber,
+        AirlineCode,
+        FromAirport,
+        ToAirport,
+        StartsAt,
+        EndsAt,
+        // navigaties voor drill-down (TA §4: associaties naar Airline en Airport)
+        Airline          : Association to one Airlines
+                             on Airline.AirlineCode = AirlineCode,
+        DepartureAirport : Association to one Airports
+                             on DepartureAirport.IcaoCode = FromAirport,
+        ArrivalAirport   : Association to one Airports
+                             on ArrivalAirport.IcaoCode = ToAirport
+  };
+
+  /**
+   * Airlines: TripPin Airlines + AirlineExtension (PreferredVendor) +
+   * FlightCount berekend uit lokale Flights-tabel (FR-009).
+   */
   @readonly
   entity Airlines as projection on trippin.Airlines {
     key AirlineCode,
         Name,
-        virtual false as PreferredVendor : Boolean
+        virtual false as PreferredVendor : Boolean,
+        virtual 0     as FlightCount     : Integer
   };
 
   /** Airports: uitsluitend TripPin (geen verrijking). */
@@ -77,6 +110,32 @@ service TravelService @(path: '/travel') {
         Name,
         Location
   };
+
+  // ---------------------------------------------------------------------------
+  // KPI-functies (FR-001) — berekend in custom handler (srv/travel-service.js)
+  // ---------------------------------------------------------------------------
+
+  /** Meest gebruikte airlines op basis van aantal vluchten (FR-001, FR-009). */
+  type TopAirline {
+    AirlineCode : String(3);
+    Name        : String;
+    FlightCount : Integer;
+  }
+
+  /** Totaal aantal reizen in het systeem. */
+  function TotalTrips() returns Integer;
+
+  /**
+   * Aantal medewerkers momenteel op reis:
+   * StartsAt ≤ vandaag ≤ EndsAt (FA FR-001).
+   */
+  function TravelersNow() returns Integer;
+
+  /**
+   * Top-airlines gesorteerd op aantal vluchten (bewuste keuze boven budget,
+   * FA FR-001 / FR-009).
+   */
+  function TopAirlines() returns many TopAirline;
 
   // ---------------------------------------------------------------------------
   // WRITE — verrijkingstabellen (PrimePath-velden). CRUD-doelen voor de UI.
