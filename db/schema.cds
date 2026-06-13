@@ -43,7 +43,26 @@ entity People {
       Gender     : String;
       Age        : Integer;
       ext        : Association to one EmployeeExtension on ext.UserName = UserName;
-      trips      : Association to many TripExtension on trips.Owner = UserName;
+      trips      : Association to many Trips on trips.Owner = UserName;
+}
+
+/**
+ * Lokale replica van alle TripPin-reizen, geaggregeerd via People $expand=Trips
+ * (zie srv/travel-service.js: replicateTrips). Bevat echte kolommen zodat
+ * filteren en sorteren op periode op DB-niveau werken (FR-002, FR-006).
+ * Status en CostCenter worden samengevoegd vanuit TripExtension bij replicatie;
+ * reizen zonder extensie krijgen Status='Gepland' en lege CostCenter.
+ */
+entity Trips {
+  key Owner       : String(255);
+  key TripId      : Integer;
+      Name        : String;
+      Description : String;
+      StartsAt    : DateTime;
+      EndsAt      : DateTime;
+      Budget      : Decimal(15, 2);
+      Status      : TripStatus default #Gepland;
+      CostCenter  : String(40);
 }
 
 /**

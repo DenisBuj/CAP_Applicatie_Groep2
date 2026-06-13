@@ -7,13 +7,13 @@ using { primepath } from '../db/schema';
 // Leesbare/verrijkte entiteiten (Explorer) combineren TripPin-data met de
 // lokale HANA-extensies. De verrijking gebeurt in srv/travel-service.js.
 //
-// Twee soorten bronnen:
-//   * Employees / Airlines / Airports  -> projectie op de REMOTE TripPin-service
-//                                          (CAP delegeert de READ naar TripPin),
-//                                          verrijkt via after-READ handler.
-//   * Trips                            -> projectie op de LOKALE TripExtension
-//                                          (zodat filteren op Status/Budget op DB
-//                                          gebeurt), verrijkt met TripPin-details.
+// Bronnen:
+//   * Employees   -> lokale People-replica + EmployeeExtension (join via ext)
+//   * Trips       -> lokale Trips-replica (gevuld via replicateTrips bij boot),
+//                    Status/CostCenter al samengevoegd; filteren/sorteren op
+//                    periode en status werken volledig op DB-niveau.
+//   * Airlines    -> REMOTE TripPin-service, verrijkt met AirlineExtension.
+//   * Airports    -> REMOTE TripPin-service (puur read-only, geen extensie).
 //
 service TravelService @(path: '/travel') {
 
@@ -39,19 +39,22 @@ service TravelService @(path: '/travel') {
         trips                    as Trips : redirected to Trips
   };
 
-  /** Reizen: lokaal beheerde Status/CostCenter + TripPin reisdetails (naam, data, budget). */
+  /**
+   * Reizen: gebaseerd op de lokale Trips-replica (gevuld bij boot via replicateTrips).
+   * Alle kolommen zijn echte DB-velden → filteren op StartsAt/EndsAt/Status werkt
+   * op DB-niveau (FR-002, FR-006). StatusCriticality is virtual (berekend in handler).
+   */
   @readonly
-  entity Trips as projection on primepath.TripExtension {
+  entity Trips as projection on primepath.Trips {
     key Owner,
     key TripId,
+        Name,
+        Description,
+        StartsAt,
+        EndsAt,
+        Budget,
         Status,
         CostCenter,
-        // verrijking uit TripPin (gevuld in after-READ):
-        virtual null as Name             : String,
-        virtual null as Description      : String,
-        virtual null as StartsAt         : DateTime,
-        virtual null as EndsAt           : DateTime,
-        virtual null as Budget           : Decimal(15, 2),
         // 1=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
         virtual null as StatusCriticality : Integer,
         // drill-down terug naar de medewerker
