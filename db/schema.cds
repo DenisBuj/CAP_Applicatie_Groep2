@@ -8,10 +8,11 @@ using { managed } from '@sap/cds/common';
 // Elke entiteit gebruikt dezelfde key als de bijbehorende TripPin-entiteit,
 // zodat ze in de mashup-service (FASE 3) 1-op-1 gekoppeld kunnen worden.
 // `managed` voegt createdAt/By + modifiedAt/By toe — handig om bij te houden
-// wie (HRAdmin) budget/status/vendor heeft aangepast.
+// wie (Travel Coördinator) status/kostenplaats/vendor/projectcode heeft aangepast.
+// HR/Admin is uitsluitend read-only (zie Functionele Analyse §3).
 //
 
-/** Reisstatus — beheerd door HR/Admin (FR-008). */
+/** Reisstatus — beheerd door de Travel Coördinator (FR-008); HR/Admin is read-only. */
 type TripStatus : String enum {
   Gepland;
   Onderweg;
