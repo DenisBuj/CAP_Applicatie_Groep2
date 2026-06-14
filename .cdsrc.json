@@ -19,7 +19,7 @@
         "hradmin": { "roles": ["HRAdmin"] }
       },
       "[production]": {
-        "kind": "xsuaa"
+        "kind": "dummy"
       }
     },
     "TripPinService": {

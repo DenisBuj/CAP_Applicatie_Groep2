@@ -14,9 +14,10 @@ build-parameters:
         - npx cds build --production
 
 modules:
-  # ----------------------------------------------------------------------
-  # CAP service (Node.js backend) — mashup TripPin + HANA
-  # ----------------------------------------------------------------------
+
+  # ============================================================
+  # 1. CAP Node.js backend — mashup TripPin + HANA-extensies
+  # ============================================================
   - name: primepath-srv
     type: nodejs
     path: gen/srv
@@ -32,11 +33,11 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: primepath-db
-      - name: primepath-uaa
+      - name: primepath-destination   # TripPin OData V4 extern endpoint
 
-  # ----------------------------------------------------------------------
-  # HANA HDI deployer — verrijkte entiteiten (EmployeeExtension, etc.)
-  # ----------------------------------------------------------------------
+  # ============================================================
+  # 2. HANA HDI deployer — verrijkingstabellen in HANA Cloud
+  # ============================================================
   - name: primepath-db-deployer
     type: hdb
     path: gen/db
@@ -46,18 +47,155 @@ modules:
     requires:
       - name: primepath-db
 
+  # ============================================================
+  # 3a. HTML5-app: Trips — Travel Coördinator
+  #     FR-002 FilterBar periode/status/kostenplaats
+  #     FR-007 Vluchten-facet  FR-008/FR-011 Status+CostCenter edit
+  # ============================================================
+  - name: primepath-trips-app
+    type: html5
+    path: app/explorer/trips
+    build-parameters:
+      build-result: webapp
+      builder: custom
+      commands: []
+      supported-platforms: []
+
+  # ============================================================
+  # 3b. HTML5-app: Employees — Team Lead
+  #     FR-003 Zoeken op naam  FR-004/FR-005 Object Page + Projectcode edit
+  # ============================================================
+  - name: primepath-employees-app
+    type: html5
+    path: app/explorer/employees
+    build-parameters:
+      build-result: webapp
+      builder: custom
+      commands: []
+      supported-platforms: []
+
+  # ============================================================
+  # 3c. HTML5-app: Airlines/Insights — HR/Admin
+  #     FR-001 KPI's  FR-009 Meest gebruikt + PreferredVendor  FR-010 Airports
+  # ============================================================
+  - name: primepath-airlines-app
+    type: html5
+    path: app/explorer/airlines
+    build-parameters:
+      build-result: webapp
+      builder: custom
+      commands: []
+      supported-platforms: []
+
+  # ============================================================
+  # 4. HTML5-deployer — bundelt de drie apps naar HTML5 App Repo
+  #    De Managed Approuter (app-runtime) serveert ze automatisch;
+  #    geen expliciete approuter-module vereist.
+  # ============================================================
+  - name: primepath-ui-deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: primepath-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - name: primepath-trips-app
+          artifacts:
+            - primepath.explorer.trips.zip
+          target-path: resources/
+        - name: primepath-employees-app
+          artifacts:
+            - primepath.explorer.employees.zip
+          target-path: resources/
+        - name: primepath-airlines-app
+          artifacts:
+            - primepath.explorer.airlines.zip
+          target-path: resources/
+
+  # ============================================================
+  # 5. Destination-content — registreert CAP backend als HTTP-
+  #    destination zodat de Managed Approuter /travel/* correct
+  #    kan routeren naar de CAP srv.
+  # ============================================================
+  - name: primepath-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: primepath-destination
+        parameters:
+          content-target: true
+      - name: srv-api
+      - name: primepath-html5-repo-runtime
+    parameters:
+      content:
+        subaccount:
+          destinations:
+            - Name: primepath-srv-api
+              Description: PrimePath CAP backend (TravelService OData V4)
+              Authentication: NoAuthentication
+              Protocol: HTTP
+              Type: HTTP
+              URL: ~{srv-api/srv-url}
+              HTML5.DynamicDestination: true
+              HTML5.ForwardAuthToken: false
+          existing_destinations_policy: update
+    build-parameters:
+      no-source: true
+
 resources:
-  # SAP HANA Cloud HDI container
+
+  # ============================================================
+  # HANA Cloud HDI container — verrijkingstabellen
+  # ============================================================
   - name: primepath-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
 
-  # XSUAA — RBAC: TravelCoordinator, TeamLead, HRAdmin (zie xs-security.json, FASE 4)
-  - name: primepath-uaa
+  # ============================================================
+  # HTML5 App Repository — host
+  # Slaat de gebouwde UI5-bestanden (zip) op in de cloud.
+  # ============================================================
+  - name: primepath-html5-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
+      service: html5-apps-repo
+      service-plan: app-host
+
+  # ============================================================
+  # HTML5 App Repository — runtime  (= Managed Approuter)
+  # Serveert de UI5-apps; routeert /travel/* via destination
+  # naar de CAP backend (geen eigen CF-approuter-module nodig).
+  # ============================================================
+  - name: primepath-html5-repo-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+
+  # ============================================================
+  # Destination service
+  #
+  # Bevat twee destinations:
+  #
+  # A. primepath-srv-api  (aangemaakt via destination-content module)
+  #    Intern: Managed Approuter → CAP backend
+  #    URL: dynamisch (cf. srv-api/srv-url hierboven)
+  #
+  # B. TripPin  (manueel aanmaken in BTP Cockpit na deployment)
+  #    Connectivity → Destinations → New Destination:
+  #      Name:           TripPin
+  #      Type:           HTTP
+  #      URL:            https://services.odata.org/TripPinRESTierService
+  #      Proxy Type:     Internet
+  #      Authentication: NoAuthentication
+  #    Gebruikt door CAP srv voor externe TripPin OData V4 data.
+  # ============================================================
+  - name: primepath-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
