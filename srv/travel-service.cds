@@ -145,6 +145,23 @@ service TravelService @(path: '/travel') {
    */
   function TopAirlines() returns many TopAirline;
 
+  /**
+   * KPI-overzicht voor HR/Admin (FR-001). OData singleton: bereikbaar via
+   * GET /travel/KPISummary zonder sleutel in de URL.
+   * TotalTrips   = totaal aantal reizen in het systeem.
+   * TravelersNow = unieke medewerkers die momenteel op reis zijn.
+   * TopAirlines  = zichtbaar in de Airlines-lijst (gesorteerd op FlightCount).
+   * @cds.persistence.skip = geen DB-tabel; volledig in-memory berekend.
+   */
+  @readonly
+  @(odata.singleton)
+  @cds.persistence.skip
+  entity KPISummary {
+    key dummy        : Integer default 1 @UI.Hidden;
+    TotalTrips       : Integer;
+    TravelersNow     : Integer;
+  }
+
   // ---------------------------------------------------------------------------
   // WRITE — verrijkingstabellen (PrimePath-velden). CRUD-doelen voor de UI.
   // MVP: geen rolafdwinging — iedereen kan de extensievelden bewerken

@@ -319,3 +319,31 @@ annotate TravelService.AirlineExtensions with @(
   AirlineCode     @title: 'Code'                  @readonly;
   PreferredVendor @title: 'Voorkeursleverancier';
 };
+
+// ============================================================================
+// KPISummary  (singleton — HR/Admin startoverzicht)  FR-001
+// ============================================================================
+annotate TravelService.KPISummary with @(
+  UI: {
+    HeaderInfo: {
+      $Type          : 'UI.HeaderInfoType',
+      TypeName       : 'KPI-overzicht',
+      TypeNamePlural : 'KPI-overzichten',
+      Title          : { $Type: 'UI.DataField', Value: TotalTrips },
+      Description    : { $Type: 'UI.DataField', Value: TravelersNow }
+    },
+    Facets: [
+      { $Type: 'UI.ReferenceFacet', ID: 'KPIFacet',
+        Label: 'Reisstatistieken', Target: '@UI.FieldGroup#KPIs' }
+    ],
+    FieldGroup #KPIs : {
+      Data: [
+        { $Type: 'UI.DataField', Value: TotalTrips,   Label: 'Totaal aantal reizen' },
+        { $Type: 'UI.DataField', Value: TravelersNow, Label: 'Momenteel op reis' }
+      ]
+    }
+  }
+) {
+  TotalTrips   @title: 'Totaal reizen';
+  TravelersNow @title: 'Momenteel op reis';
+};

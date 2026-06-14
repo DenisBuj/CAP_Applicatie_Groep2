@@ -126,6 +126,15 @@ module.exports = class TravelService extends cds.ApplicationService {
       return result;
     });
 
+    // KPISummary singleton (FR-001): TotalTrips + TravelersNow in-memory berekend.
+    this.on('READ', 'KPISummary', async () => {
+      const { Trips } = cds.entities('primepath');
+      const [{ cnt }] = await SELECT.from(Trips).columns('count(*) as cnt');
+      const today = new Date().toISOString();
+      const rows  = await SELECT.from(Trips).where({ StartsAt: { '<=': today }, EndsAt: { '>=': today } });
+      return { dummy: 1, TotalTrips: Number(cnt), TravelersNow: new Set(rows.map(r => r.Owner)).size };
+    });
+
     await super.init();
   }
 };
