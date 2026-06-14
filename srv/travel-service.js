@@ -132,7 +132,7 @@ module.exports = class TravelService extends cds.ApplicationService {
       const [{ cnt }] = await SELECT.from(Trips).columns('count(*) as cnt');
       const today = new Date().toISOString();
       const rows  = await SELECT.from(Trips).where({ StartsAt: { '<=': today }, EndsAt: { '>=': today } });
-      return { dummy: 1, TotalTrips: Number(cnt), TravelersNow: new Set(rows.map(r => r.Owner)).size };
+      return { TotalTrips: Number(cnt), TravelersNow: new Set(rows.map(r => r.Owner)).size };
     });
 
     await super.init();

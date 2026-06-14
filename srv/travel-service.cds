@@ -157,9 +157,8 @@ service TravelService @(path: '/travel') {
   @(odata.singleton)
   @cds.persistence.skip
   entity KPISummary {
-    key dummy        : Integer default 1 @UI.Hidden;
-    TotalTrips       : Integer;
-    TravelersNow     : Integer;
+    TotalTrips   : Integer;
+    TravelersNow : Integer;
   }
 
   // ---------------------------------------------------------------------------
