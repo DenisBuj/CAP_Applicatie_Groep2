@@ -102,13 +102,18 @@ service TravelService @(path: '/travel') {
         virtual 0     as FlightCount     : Integer
   };
 
-  /** Airports: uitsluitend TripPin (geen verrijking). */
+  /**
+   * Airports: uitsluitend TripPin (geen verrijking).
+   * NB: TripPin's `Location` is een genest complex-type dat CAP uitplat naar
+   * Location_Address/Location_City_* — die platte namen bestaan niet op de remote
+   * en breken de $select-delegatie (502). Bewust weggelaten in de MVP; geneste
+   * Location-ondersteuning is een follow-up.
+   */
   @readonly
   entity Airports as projection on trippin.Airports {
     key IcaoCode,
         IataCode,
-        Name,
-        Location
+        Name
   };
 
   // ---------------------------------------------------------------------------

@@ -47,7 +47,7 @@ CAP-deploymentpad en ruim haalbaar. De backend-fundering staat al; dit plan maak
 | C6 | **Timeline-app verwijderd**; 3 apps over: trips, employees, airlines | ✅ gedaan |
 | C7 | **Department-veld geschrapt** uit schema/annotaties/seed | ✅ gedaan |
 | C8 | **Readme**: Managed Approuter i.p.v. "SAP Build Work Zone" | ✅ gedaan |
-| C9 | **Airports.Location** toegevoegd; `*.sqlite` in `.gitignore` | ✅ gedaan |
+| C9 | `*.sqlite` in `.gitignore` ✅. **Airports.Location** weer verwijderd: TripPin's geneste complex-type breekt de $select-delegatie (502) → geneste Location-support is een follow-up | ⏳ Location open |
 
 ### Nog te corrigeren restpunten 
 - ⏳ **C2** Trips-bron = geaggregeerde set i.p.v. lokale extensie → **commit 2**
