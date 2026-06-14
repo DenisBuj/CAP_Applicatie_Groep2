@@ -142,9 +142,12 @@ service TravelService @(path: '/travel') {
   // MVP: geen rolafdwinging — iedereen kan de extensievelden bewerken
   // (RBAC via XSUAA is een toekomstige uitbreiding, zie analyses).
   // ---------------------------------------------------------------------------
+  @odata.draft.enabled
   entity EmployeeExtensions as projection on primepath.EmployeeExtension;
 
+  @odata.draft.enabled
   entity TripExtensions as projection on primepath.TripExtension;
 
+  @odata.draft.enabled
   entity AirlineExtensions as projection on primepath.AirlineExtension;
 }
