@@ -46,7 +46,9 @@
     "routing": {
       "routes": [
         { "pattern": ":?query:", "name": "TripsList", "target": "TripsList" },
-        { "pattern": "Trips({key}):?query:", "name": "TripsObjectPage", "target": "TripsObjectPage" }
+        { "pattern": "Trips({key}):?query:", "name": "TripsObjectPage", "target": "TripsObjectPage" },
+        { "pattern": "TripExtensions:?query:", "name": "TripExtensionsList", "target": "TripExtensionsList" },
+        { "pattern": "TripExtensions({key}):?query:", "name": "TripExtensionsObjectPage", "target": "TripExtensionsObjectPage" }
       ],
       "targets": {
         "TripsList": {
@@ -73,6 +75,33 @@
           "options": {
             "settings": {
               "contextPath": "/Trips"
+            }
+          }
+        },
+        "TripExtensionsList": {
+          "type": "Component",
+          "id": "TripExtensionsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/TripExtensions",
+              "variantManagement": "Page",
+              "initialLoad": true,
+              "navigation": {
+                "TripExtensions": {
+                  "detail": { "route": "TripExtensionsObjectPage" }
+                }
+              }
+            }
+          }
+        },
+        "TripExtensionsObjectPage": {
+          "type": "Component",
+          "id": "TripExtensionsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/TripExtensions"
             }
           }
         }

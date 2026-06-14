@@ -85,6 +85,11 @@ annotate TravelService.Trips with @(
       { $Type: 'UI.DataField', Value: StartsAt,            Label: 'Vertrek' },
       { $Type: 'UI.DataField', Value: EndsAt,              Label: 'Terug' }
     ],
+    // FR-006: standaard chronologisch gesorteerd op vertrekdatum
+    PresentationVariant : {
+      SortOrder      : [{ Property: StartsAt, Descending: false }],
+      Visualizations : ['@UI.LineItem']
+    },
     // ---- Object Page ----
     Facets : [
       { $Type: 'UI.ReferenceFacet', ID: 'ReisFacet',
