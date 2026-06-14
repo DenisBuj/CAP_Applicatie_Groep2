@@ -50,7 +50,9 @@
     "routing": {
       "routes": [
         { "pattern": ":?query:", "name": "EmployeesList", "target": "EmployeesList" },
-        { "pattern": "Employees({key}):?query:", "name": "EmployeesObjectPage", "target": "EmployeesObjectPage" }
+        { "pattern": "Employees({key}):?query:", "name": "EmployeesObjectPage", "target": "EmployeesObjectPage" },
+        { "pattern": "EmployeeExtensions:?query:", "name": "EmployeeExtensionsList", "target": "EmployeeExtensionsList" },
+        { "pattern": "EmployeeExtensions({key}):?query:", "name": "EmployeeExtensionsObjectPage", "target": "EmployeeExtensionsObjectPage" }
       ],
       "targets": {
         "EmployeesList": {
@@ -77,6 +79,33 @@
           "options": {
             "settings": {
               "contextPath": "/Employees"
+            }
+          }
+        },
+        "EmployeeExtensionsList": {
+          "type": "Component",
+          "id": "EmployeeExtensionsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/EmployeeExtensions",
+              "variantManagement": "Page",
+              "initialLoad": true,
+              "navigation": {
+                "EmployeeExtensions": {
+                  "detail": { "route": "EmployeeExtensionsObjectPage" }
+                }
+              }
+            }
+          }
+        },
+        "EmployeeExtensionsObjectPage": {
+          "type": "Component",
+          "id": "EmployeeExtensionsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/EmployeeExtensions"
             }
           }
         }

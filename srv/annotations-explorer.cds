@@ -96,7 +96,10 @@ annotate TravelService.Trips with @(
         Label: 'Reisgegevens', Target: '@UI.FieldGroup#TripDetails' },
       // FR-007: vluchten per reis (airline + vertrek-/aankomstluchthaven)
       { $Type: 'UI.ReferenceFacet', ID: 'VluchtenFacet',
-        Label: 'Vluchten',    Target: 'Flights/@UI.LineItem' }
+        Label: 'Vluchten',     Target: 'Flights/@UI.LineItem' },
+      // FR-007: medewerkergegevens inline zodat de gebruiker kan doorklikken
+      { $Type: 'UI.ReferenceFacet', ID: 'MedewerkerFacet',
+        Label: 'Medewerker',   Target: 'Employee/@UI.FieldGroup#Details' }
     ],
     FieldGroup #TripDetails : {
       Data : [
@@ -137,21 +140,24 @@ annotate TravelService.Flights with @(
       Description    : { $Type: 'UI.DataField', Value: AirlineCode }
     },
     LineItem : [
-      { $Type: 'UI.DataField', Value: FlightNumber, Label: 'Vluchtnummer' },
-      { $Type: 'UI.DataField', Value: AirlineCode,  Label: 'Airline' },
-      { $Type: 'UI.DataField', Value: FromAirport,  Label: 'Vertrek (ICAO)' },
-      { $Type: 'UI.DataField', Value: ToAirport,    Label: 'Aankomst (ICAO)' },
-      { $Type: 'UI.DataField', Value: StartsAt,     Label: 'Vertrekdatum' },
-      { $Type: 'UI.DataField', Value: EndsAt,       Label: 'Aankomstdatum' }
+      { $Type: 'UI.DataField', Value: FlightNumber,    Label: 'Vluchtnummer' },
+      { $Type: 'UI.DataField', Value: AirlineName,     Label: 'Airline' },
+      { $Type: 'UI.DataField', Value: FromAirportName, Label: 'Vertrek' },
+      { $Type: 'UI.DataField', Value: ToAirportName,   Label: 'Aankomst' },
+      { $Type: 'UI.DataField', Value: StartsAt,        Label: 'Vertrekdatum' },
+      { $Type: 'UI.DataField', Value: EndsAt,          Label: 'Aankomstdatum' }
     ]
   }
 ) {
-  FlightNumber @title: 'Vluchtnummer';
-  AirlineCode  @title: 'Airline';
-  FromAirport  @title: 'Vertrek (ICAO)';
-  ToAirport    @title: 'Aankomst (ICAO)';
-  StartsAt     @title: 'Vertrekdatum';
-  EndsAt       @title: 'Aankomstdatum';
+  FlightNumber    @title: 'Vluchtnummer';
+  AirlineCode     @title: 'Airline (code)';
+  AirlineName     @title: 'Airline';
+  FromAirport     @title: 'Vertrek (ICAO)';
+  FromAirportName @title: 'Vertrek';
+  ToAirport       @title: 'Aankomst (ICAO)';
+  ToAirportName   @title: 'Aankomst';
+  StartsAt        @title: 'Vertrekdatum';
+  EndsAt          @title: 'Aankomstdatum';
 };
 
 // ============================================================================
