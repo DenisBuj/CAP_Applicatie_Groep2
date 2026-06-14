@@ -53,15 +53,18 @@ entity People {
  * Bevat alleen vluchten (gefilterd op @odata.type = Flight) voor FR-007/FR-009.
  */
 entity Flights {
-  key Owner        : String(255);
-  key TripId       : Integer;
-  key PlanItemId   : Integer;
-      FlightNumber : String(10);
-      AirlineCode  : String(3);
-      FromAirport  : String(4);   // ICAO-code vertrekhaven
-      ToAirport    : String(4);   // ICAO-code aankomstluchthaven
-      StartsAt     : DateTime;
-      EndsAt       : DateTime;
+  key Owner           : String(255);
+  key TripId          : Integer;
+  key PlanItemId      : Integer;
+      FlightNumber    : String(10);
+      AirlineCode     : String(3);
+      AirlineName     : String(100);  // naam van de airline (uit TripPin bij replicatie)
+      FromAirport     : String(4);    // ICAO-code vertrekhaven
+      FromAirportName : String(100);  // naam van de vertrekhaven (uit TripPin)
+      ToAirport       : String(4);    // ICAO-code aankomstluchthaven
+      ToAirportName   : String(100);  // naam van de aankomstluchthaven (uit TripPin)
+      StartsAt        : DateTime;
+      EndsAt          : DateTime;
 }
 
 /**

@@ -262,17 +262,20 @@ async function replicateFlights() {
         if (!resp.ok) return { ...ref, AirlineCode: '', FromAirport: '', ToAirport: '' };
         const f = await resp.json();
         return {
-          Owner:        ref.Owner,
-          TripId:       ref.TripId,
-          PlanItemId:   ref.PlanItemId,
-          FlightNumber: f.FlightNumber ?? ref.FlightNumber,
-          AirlineCode:  f.Airline?.AirlineCode ?? '',
-          FromAirport:  f.From?.IcaoCode       ?? '',
-          ToAirport:    f.To?.IcaoCode         ?? '',
-          StartsAt:     f.StartsAt ?? ref.StartsAt,
-          EndsAt:       f.EndsAt   ?? ref.EndsAt,
+          Owner:           ref.Owner,
+          TripId:          ref.TripId,
+          PlanItemId:      ref.PlanItemId,
+          FlightNumber:    f.FlightNumber ?? ref.FlightNumber,
+          AirlineCode:     f.Airline?.AirlineCode ?? '',
+          AirlineName:     f.Airline?.Name        ?? '',
+          FromAirport:     f.From?.IcaoCode       ?? '',
+          FromAirportName: f.From?.Name           ?? '',
+          ToAirport:       f.To?.IcaoCode         ?? '',
+          ToAirportName:   f.To?.Name             ?? '',
+          StartsAt:        f.StartsAt ?? ref.StartsAt,
+          EndsAt:          f.EndsAt   ?? ref.EndsAt,
         };
-      } catch { return { ...ref, AirlineCode: '', FromAirport: '', ToAirport: '' }; }
+      } catch { return { ...ref, AirlineCode: '', AirlineName: '', FromAirport: '', FromAirportName: '', ToAirport: '', ToAirportName: '' }; }
     }))
   ).filter(Boolean);
 

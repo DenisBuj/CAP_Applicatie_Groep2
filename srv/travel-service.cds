@@ -77,8 +77,11 @@ service TravelService @(path: '/travel') {
     key PlanItemId,
         FlightNumber,
         AirlineCode,
+        AirlineName,
         FromAirport,
+        FromAirportName,
         ToAirport,
+        ToAirportName,
         StartsAt,
         EndsAt,
         // navigaties voor drill-down (TA §4: associaties naar Airline en Airport)
