@@ -78,7 +78,8 @@ annotate TravelService.Trips with @(
     LineItem : [
       { $Type: 'UI.DataField', Value: TripId,              Label: 'Reis-ID' },
       { $Type: 'UI.DataField', Value: Name,                Label: 'Naam' },
-      { $Type: 'UI.DataField', Value: Owner,               Label: 'Medewerker' },
+      { $Type: 'UI.DataField', Value: Employee.FirstName,  Label: 'Voornaam' },
+      { $Type: 'UI.DataField', Value: Employee.LastName,   Label: 'Achternaam' },
       { $Type: 'UI.DataField', Value: Status,              Label: 'Status',      Criticality: StatusCriticality },
       { $Type: 'UI.DataField', Value: CostCenter,          Label: 'Kostenplaats' },
       { $Type: 'UI.DataField', Value: Budget,              Label: 'Budget' },
