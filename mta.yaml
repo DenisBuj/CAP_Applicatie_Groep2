@@ -12,6 +12,7 @@ build-parameters:
     - builder: custom
       commands:
         - npx cds build --production
+        - powershell -Command "$apps=@(@{n='trips';id='primepath.explorer.trips'},@{n='employees';id='primepath.explorer.employees'},@{n='airlines';id='primepath.explorer.airlines'});foreach($a in $apps){Push-Location ('app/explorer/'+$a.n+'/webapp');$f=(Get-ChildItem -Exclude '*.zip').FullName;if($f){Compress-Archive -Path $f -DestinationPath ($a.id+'.zip') -Force};Pop-Location}"
 
 modules:
 
@@ -33,7 +34,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: primepath-db
-      - name: primepath-destination   # TripPin OData V4 extern endpoint
+      - name: primepath-destination
 
   # ============================================================
   # 2. HANA HDI deployer — verrijkingstabellen in HANA Cloud
@@ -49,8 +50,6 @@ modules:
 
   # ============================================================
   # 3a. HTML5-app: Trips — Travel Coördinator
-  #     FR-002 FilterBar periode/status/kostenplaats
-  #     FR-007 Vluchten-facet  FR-008/FR-011 Status+CostCenter edit
   # ============================================================
   - name: primepath-trips-app
     type: html5
@@ -63,7 +62,6 @@ modules:
 
   # ============================================================
   # 3b. HTML5-app: Employees — Team Lead
-  #     FR-003 Zoeken op naam  FR-004/FR-005 Object Page + Projectcode edit
   # ============================================================
   - name: primepath-employees-app
     type: html5
@@ -76,7 +74,6 @@ modules:
 
   # ============================================================
   # 3c. HTML5-app: Airlines/Insights — HR/Admin
-  #     FR-001 KPI's  FR-009 Meest gebruikt + PreferredVendor  FR-010 Airports
   # ============================================================
   - name: primepath-airlines-app
     type: html5
@@ -89,8 +86,6 @@ modules:
 
   # ============================================================
   # 4. HTML5-deployer — bundelt de drie apps naar HTML5 App Repo
-  #    De Managed Approuter (app-runtime) serveert ze automatisch;
-  #    geen expliciete approuter-module vereist.
   # ============================================================
   - name: primepath-ui-deployer
     type: com.sap.application.content
@@ -115,35 +110,6 @@ modules:
             - primepath.explorer.airlines.zip
           target-path: resources/
 
-  # ============================================================
-  # 5. Destination-content — registreert CAP backend als HTTP-
-  #    destination zodat de Managed Approuter /travel/* correct
-  #    kan routeren naar de CAP srv.
-  # ============================================================
-  - name: primepath-destination-content
-    type: com.sap.application.content
-    requires:
-      - name: primepath-destination
-        parameters:
-          content-target: true
-      - name: srv-api
-      - name: primepath-html5-repo-runtime
-    parameters:
-      content:
-        subaccount:
-          destinations:
-            - Name: primepath-srv-api
-              Description: PrimePath CAP backend (TravelService OData V4)
-              Authentication: NoAuthentication
-              Protocol: HTTP
-              Type: HTTP
-              URL: ~{srv-api/srv-url}
-              HTML5.DynamicDestination: true
-              HTML5.ForwardAuthToken: false
-          existing_destinations_policy: update
-    build-parameters:
-      no-source: true
-
 resources:
 
   # ============================================================
@@ -156,19 +122,17 @@ resources:
       service-plan: hdi-shared
 
   # ============================================================
-  # HTML5 App Repository — host
-  # Slaat de gebouwde UI5-bestanden (zip) op in de cloud.
+  # HTML5 App Repository — host (met expliciete service-name)
   # ============================================================
   - name: primepath-html5-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
+      service-name: primepath-html5-repo-host
       service-plan: app-host
 
   # ============================================================
-  # HTML5 App Repository — runtime  (= Managed Approuter)
-  # Serveert de UI5-apps; routeert /travel/* via destination
-  # naar de CAP backend (geen eigen CF-approuter-module nodig).
+  # HTML5 App Repository — runtime (Managed Approuter)
   # ============================================================
   - name: primepath-html5-repo-runtime
     type: org.cloudfoundry.managed-service
@@ -177,25 +141,29 @@ resources:
       service-plan: app-runtime
 
   # ============================================================
-  # Destination service
-  #
-  # Bevat twee destinations:
-  #
-  # A. primepath-srv-api  (aangemaakt via destination-content module)
-  #    Intern: Managed Approuter → CAP backend
-  #    URL: dynamisch (cf. srv-api/srv-url hierboven)
-  #
-  # B. TripPin  (manueel aanmaken in BTP Cockpit na deployment)
-  #    Connectivity → Destinations → New Destination:
-  #      Name:           TripPin
-  #      Type:           HTTP
-  #      URL:            https://services.odata.org/TripPinRESTierService
-  #      Proxy Type:     Internet
-  #      Authentication: NoAuthentication
-  #    Gebruikt door CAP srv voor externe TripPin OData V4 data.
+  # Destination service — maakt intern primepath-srv-api aan via init_data
+  # TripPin-destination maak je handmatig aan in de BTP Cockpit:
+  #   Name: TripPin
+  #   URL:  https://services.odata.org/TripPinRESTierService
+  #   Type: HTTP  Proxy: Internet  Auth: NoAuthentication
   # ============================================================
   - name: primepath-destination
     type: org.cloudfoundry.managed-service
+    requires:
+      - name: srv-api
     parameters:
       service: destination
       service-plan: lite
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          subaccount:
+            existing_destinations_policy: update
+            destinations:
+              - Name: primepath-srv-api
+                Authentication: NoAuthentication
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: false
