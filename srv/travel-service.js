@@ -143,7 +143,7 @@ module.exports = class TravelService extends cds.ApplicationService {
 // Helpers
 // -----------------------------------------------------------------------------
 
-const CRITICALITY = { Gepland: 1, Onderweg: 2, Afgerond: 3 };
+const CRITICALITY = { Gepland: 0, Onderweg: 2, Afgerond: 3 };
 
 function toArray(x) {
   return Array.isArray(x) ? x : x ? [x] : [];
