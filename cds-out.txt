@@ -1,0 +1,32 @@
+
+> primepath-travel-dashboard@1.0.0 watch
+> cds watch
+
+[33m
+[1mcds serve all --with-mocks --in-memory? [0m
+[33m( live reload enabled for browsers ) [0m
+[33m
+[1m        ___________________________
+ [0m
+[cds] - loaded model from 5 file(s):
+ 
+  srv/annotations-explorer.cds
+  srv/travel-service.cds
+  srv/external/TripPinService.cds
+  db/schema.cds
+  node_modules/@sap/cds/common.cds
+
+[cds] - using bindings from: { registry: '~/.cds-services.json' }
+[cds] - connect to db > sqlite { url: 'db.sqlite' }
+[cds] - connect to TripPinService > odata { url: 'https://services.odata.org/TripPinRESTierService' }
+[cds] - using auth strategy { kind: 'mocked' }
+[cds] - serving TravelService {
+  at: [ '/travel' ],
+  decl: 'srv/travel-service.cds:18',
+  impl: 'srv/travel-service.js'
+}
+[travel] - People-replicatie: 20 medewerkers
+[travel] - Trips-replicatie: 23 reizen uit TripPin
+[travel] - Flights-replicatie: 8 vluchten uit TripPin
+[cds] - server listening on { url: 'http://localhost:4004' }
+[cds] - server v9.9.1 launched in 7616 ms
