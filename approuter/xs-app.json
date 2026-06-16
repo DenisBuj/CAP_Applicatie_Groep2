@@ -1,0 +1,18 @@
+{
+  "welcomeFile": "/primepath.explorer.trips/index.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "^/travel/(.*)$",
+      "target": "/travel/$1",
+      "destination": "primepath-srv-api",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "none"
+    }
+  ]
+}
