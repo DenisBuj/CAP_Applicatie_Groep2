@@ -109,6 +109,22 @@ modules:
             - primepath.explorer.airlines.zip
           target-path: resources/
 
+  # ============================================================
+  # 5. Standalone Approuter — serveert de 3 Fiori-apps via eigen URL
+  #    authenticationMethod: none (MVP, geen XSUAA)
+  #    /travel/*  → primepath-srv-api destination (CAP-backend)
+  #    /*         → html5-apps-repo-rt (apps uit HTML5 App Repo)
+  # ============================================================
+  - name: primepath-approuter
+    type: approuter.nodejs
+    path: approuter
+    parameters:
+      memory: 128M
+      disk-quota: 256M
+    requires:
+      - name: primepath-html5-repo-runtime
+      - name: primepath-destination
+
 resources:
 
   # ============================================================
