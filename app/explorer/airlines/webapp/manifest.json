@@ -49,10 +49,11 @@
     },
     "routing": {
       "routes": [
-        { "pattern": ":?query:",                             "name": "KPISummaryPage",           "target": "KPISummaryPage" },
-        { "pattern": "Airlines:?query:",                     "name": "AirlinesList",             "target": "AirlinesList" },
-        { "pattern": "Airports:?query:",                     "name": "AirportsList",             "target": "AirportsList" },
-        { "pattern": "AirlineExtensions:?query:",            "name": "AirlineExtensionsList",    "target": "AirlineExtensionsList" },
+        { "pattern": ":?query:",                             "name": "KPISummaryPage",              "target": "KPISummaryPage" },
+        { "pattern": "Airlines:?query:",                     "name": "AirlinesList",                "target": "AirlinesList" },
+        { "pattern": "Airlines({key}):?query:",              "name": "AirlinesObjectPage",          "target": "AirlinesObjectPage" },
+        { "pattern": "Airports:?query:",                     "name": "AirportsList",                "target": "AirportsList" },
+        { "pattern": "AirlineExtensions:?query:",            "name": "AirlineExtensionsList",       "target": "AirlineExtensionsList" },
         { "pattern": "AirlineExtensions({key}):?query:",     "name": "AirlineExtensionsObjectPage", "target": "AirlineExtensionsObjectPage" }
       ],
       "targets": {
@@ -74,7 +75,22 @@
             "settings": {
               "contextPath": "/Airlines",
               "variantManagement": "Page",
-              "initialLoad": true
+              "initialLoad": true,
+              "navigation": {
+                "Airlines": {
+                  "detail": { "route": "AirlinesObjectPage" }
+                }
+              }
+            }
+          }
+        },
+        "AirlinesObjectPage": {
+          "type": "Component",
+          "id": "AirlinesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Airlines"
             }
           }
         },

@@ -181,7 +181,21 @@ annotate TravelService.Airlines with @(
       { $Type: 'UI.DataField', Value: FlightCount,     Label: 'Aantal vluchten' }
     ],
     PresentationVariant : {
-      SortOrder : [{ Property: FlightCount, Descending: true }]
+      SortOrder      : [{ Property: FlightCount, Descending: true }],
+      Visualizations : ['@UI.LineItem']
+    },
+    // ---- Object Page ----
+    Facets : [
+      { $Type: 'UI.ReferenceFacet', ID: 'AirlineDetailsFacet',
+        Label: 'Airline gegevens', Target: '@UI.FieldGroup#AirlineDetails' }
+    ],
+    FieldGroup #AirlineDetails : {
+      Data : [
+        { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
+        { $Type: 'UI.DataField', Value: Name,            Label: 'Naam' },
+        { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' },
+        { $Type: 'UI.DataField', Value: FlightCount,     Label: 'Aantal vluchten' }
+      ]
     }
   }
 ) {
@@ -333,6 +347,21 @@ annotate TravelService.KPISummary with @(
       Title          : { $Type: 'UI.DataField', Value: TotalTrips },
       Description    : { $Type: 'UI.DataField', Value: TravelersNow }
     },
+    // KPI-tegels bovenaan de pagina (Fiori Elements DataPoint kaarten)
+    DataPoint #TotalTrips: {
+      Value       : TotalTrips,
+      Title       : 'Totaal reizen',
+      Description : 'Alle reizen in het systeem'
+    },
+    DataPoint #TravelersNow: {
+      Value       : TravelersNow,
+      Title       : 'Op reis nu',
+      Description : 'Medewerkers momenteel onderweg'
+    },
+    HeaderFacets: [
+      { $Type: 'UI.ReferenceFacet', Target: '@UI.DataPoint#TotalTrips',   Label: 'Totaal reizen' },
+      { $Type: 'UI.ReferenceFacet', Target: '@UI.DataPoint#TravelersNow', Label: 'Op reis nu'    }
+    ],
     Facets: [
       { $Type: 'UI.ReferenceFacet', ID: 'KPIFacet',
         Label: 'Reisstatistieken', Target: '@UI.FieldGroup#KPIs' }
