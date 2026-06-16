@@ -12,7 +12,6 @@ build-parameters:
     - builder: custom
       commands:
         - npx cds build --production
-        - powershell -Command "$apps=@(@{n='trips';id='primepath.explorer.trips'},@{n='employees';id='primepath.explorer.employees'},@{n='airlines';id='primepath.explorer.airlines'});foreach($a in $apps){Push-Location ('app/explorer/'+$a.n+'/webapp');$f=(Get-ChildItem -Exclude '*.zip').FullName;if($f){Compress-Archive -Path $f -DestinationPath ($a.id+'.zip') -Force};Pop-Location}"
 
 modules:
 
