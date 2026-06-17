@@ -16,9 +16,10 @@
     "start": "cds-serve",
     "watch": "cds watch",
     "build": "cds build --production",
-    "watch-trips":     "cds watch --open app/explorer/trips/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-employees": "cds watch --open app/explorer/employees/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-airlines":  "cds watch --open app/explorer/airlines/webapp/index.html?sap-ui-xx-viewCache=false"
+    "open-trips":      "open http://localhost:4004/explorer/trips/webapp/index.html",
+    "open-employees":  "open http://localhost:4004/explorer/employees/webapp/index.html",
+    "open-airlines":   "open http://localhost:4004/explorer/airlines/webapp/index.html",
+    "open-all":        "open http://localhost:4004/explorer/trips/webapp/index.html && open http://localhost:4004/explorer/employees/webapp/index.html && open http://localhost:4004/explorer/airlines/webapp/index.html"
   },
   "dependencies": {
     "@cap-js/hana": "^2",
