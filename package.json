@@ -7,10 +7,18 @@
   "engines": {
     "node": "^20 || ^22 || ^24"
   },
+  "workspaces": [
+    "app/explorer/trips",
+    "app/explorer/employees",
+    "app/explorer/airlines"
+  ],
   "scripts": {
     "start": "cds-serve",
     "watch": "cds watch",
-    "build": "cds build --production"
+    "build": "cds build --production",
+    "watch-trips":     "cds watch --open app/explorer/trips/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-employees": "cds watch --open app/explorer/employees/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-airlines":  "cds watch --open app/explorer/airlines/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "dependencies": {
     "@cap-js/hana": "^2",

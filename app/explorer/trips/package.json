@@ -1,5 +1,17 @@
 {
-  "dependencies": {
-    "primepath-travel-dashboard": "file:../../.."
+  "name": "primepath.explorer.trips",
+  "version": "0.0.1",
+  "description": "PrimePath Explorer — Reizen (Travel Coördinator)",
+  "main": "webapp/index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "@ui5/cli": "^4.0.33",
+    "@sap/ux-ui5-tooling": "1",
+    "@sap-ux/eslint-plugin-fiori-tools": "^9.0.0",
+    "eslint": "^9"
+  },
+  "scripts": {
+    "start": "ui5 serve",
+    "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
   }
 }
