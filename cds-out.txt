@@ -8,9 +8,12 @@
 [33m
 [1m        ___________________________
  [0m
-[cds] - loaded model from 5 file(s):
+[cds] - loaded model from 8 file(s):
  
-  srv/annotations-explorer.cds
+  app/explorer/index.cds
+  app/explorer/trips/annotations.cds
+  app/explorer/employees/annotations.cds
+  app/explorer/airlines/annotations.cds
   srv/travel-service.cds
   srv/external/TripPinService.cds
   db/schema.cds
@@ -28,5 +31,5 @@
 [travel] - People-replicatie: 20 medewerkers
 [travel] - Trips-replicatie: 23 reizen uit TripPin
 [travel] - Flights-replicatie: 8 vluchten uit TripPin
-[cds] - server listening on { url: 'http://localhost:4004' }
-[cds] - server v9.9.1 launched in 7616 ms
+[33m[1m[32m
+[cds] - my watch has ended. [0m [0m
