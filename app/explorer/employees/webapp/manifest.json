@@ -1,9 +1,5 @@
 {
   "_version": "1.59.0",
-  "sap.cloud": {
-    "public": true,
-    "service": "primepath.travel"
-  },
   "sap.app": {
     "id": "primepath.explorer.employees",
     "type": "application",

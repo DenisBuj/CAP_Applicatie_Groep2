@@ -56,7 +56,7 @@ service TravelService @(path: '/travel') {
         Budget,
         Status,
         CostCenter,
-        // 1=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
+        // 0=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
         virtual null as StatusCriticality : Integer,
         // drill-down terug naar de medewerker
         Employee : Association to one Employees on Employee.UserName = Owner,

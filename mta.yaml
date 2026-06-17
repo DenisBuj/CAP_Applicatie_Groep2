@@ -54,9 +54,10 @@ modules:
     type: html5
     path: app/explorer/trips
     build-parameters:
-      build-result: webapp
+      build-result: dist
       builder: custom
-      commands: []
+      commands:
+        - npm run build:cf
       supported-platforms: []
 
   # ============================================================
@@ -66,9 +67,10 @@ modules:
     type: html5
     path: app/explorer/employees
     build-parameters:
-      build-result: webapp
+      build-result: dist
       builder: custom
-      commands: []
+      commands:
+        - npm run build:cf
       supported-platforms: []
 
   # ============================================================
@@ -78,9 +80,10 @@ modules:
     type: html5
     path: app/explorer/airlines
     build-parameters:
-      build-result: webapp
+      build-result: dist
       builder: custom
-      commands: []
+      commands:
+        - npm run build:cf
       supported-platforms: []
 
   # ============================================================

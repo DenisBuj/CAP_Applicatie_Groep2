@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "ui5 serve",
+    "build:cf": "rm -rf dist && mkdir -p dist && cd webapp && zip -rqX ../dist/primepath.explorer.trips.zip . --exclude '*.zip'",
     "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
   }
 }
