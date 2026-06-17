@@ -1,0 +1,22 @@
+specVersion: "4.0"
+metadata:
+  name: primepath.explorer.airlines
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - path: /travel
+            url: http://localhost:4004
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        delay: 300
+resources:
+  configuration:
+    paths:
+      webapp: webapp
