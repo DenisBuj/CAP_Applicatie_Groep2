@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrimePath Travel Dashboard</title>
+
+  <!--
+    Fiori Launchpad Sandbox voor SAP BTP (standalone Approuter).
+    Geserveerd door de approuter via localDir op de welcomeFile /launchpad/flp.html .
+    De drie apps worden uit de HTML5 Application Repository geladen op hun
+    repo-pad (= sap.app.id), bv. /primepath.explorer.trips .
+    Tegels starten elke app (List Report + Object Page) op de CAP-service (/travel).
+  -->
+  <script type="text/javascript">
+    window["sap-ushell-config"] = {
+      defaultRenderer: "fiori2",
+      renderers: {
+        fiori2: {
+          componentData: { config: { enableSearch: false, rootIntent: "Shell-home" } }
+        }
+      },
+      ushell: { spaces: { enabled: false } },
+      services: {
+        "Container": {
+          adapter: { config: { userProfile: { defaults: { id: "PRIMEPATH", firstName: "PrimePath", lastName: "Demo" } } } }
+        },
+        "LaunchPage": {
+          adapter: {
+            config: {
+              groups: [
+                {
+                  id: "primepathGroup",
+                  title: "PrimePath Travel Dashboard",
+                  isPreset: true, isVisible: true, isGroupLocked: false,
+                  tiles: [
+                    { id: "tileTrips",     tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Reisbeheer",              subtitle: "Travel Coördinator", icon: "sap-icon://flight",   targetURL: "#Trips-display" } },
+                    { id: "tileEmployees", tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Teambeschikbaarheid",      subtitle: "Team Lead",          icon: "sap-icon://employee", targetURL: "#Employees-display" } },
+                    { id: "tileAirlines",  tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Vendor Insights & KPI's",  subtitle: "HR Manager",         icon: "sap-icon://airplane", targetURL: "#Airlines-display" } }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      applications: {
+        "Trips-display": {
+          title: "Reisbeheer",
+          description: "Travel Coördinator — reizen zoeken/filteren & PrimePath-data beheren",
+          additionalInformation: "SAPUI5.Component=primepath.explorer.trips",
+          applicationType: "URL",
+          url: "/primepath.explorer.trips",
+          navigationMode: "embedded"
+        },
+        "Employees-display": {
+          title: "Teambeschikbaarheid",
+          description: "Team Lead — reisgeschiedenis & geplande trips per medewerker",
+          additionalInformation: "SAPUI5.Component=primepath.explorer.employees",
+          applicationType: "URL",
+          url: "/primepath.explorer.employees",
+          navigationMode: "embedded"
+        },
+        "Airlines-display": {
+          title: "Vendor Insights & KPI's",
+          description: "HR Manager — KPI's, meest gebruikte airlines & luchthavens (read-only)",
+          additionalInformation: "SAPUI5.Component=primepath.explorer.airlines",
+          applicationType: "URL",
+          url: "/primepath.explorer.airlines",
+          navigationMode: "embedded"
+        }
+      }
+    };
+  </script>
+
+  <script src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js"
+          id="sap-ushell-bootstrap"></script>
+
+  <script id="sap-ui-bootstrap"
+          src="https://ui5.sap.com/resources/sap-ui-core.js"
+          data-sap-ui-libs="sap.m, sap.ushell, sap.ui.layout, sap.fe.templates"
+          data-sap-ui-theme="sap_horizon"
+          data-sap-ui-compat-version="edge"
+          data-sap-ui-frame-options="allow"
+          data-sap-ui-binding-syntax="complex"
+          data-sap-ui-async="true">
+  </script>
+
+  <script type="text/javascript">
+    sap.ui.getCore().attachInit(function () {
+      sap.ui.require(["sap/ushell/Container"], function () {
+        sap.ushell.Container.createRenderer(null, true).then(function (oContent) {
+          oContent.placeAt("content");
+        });
+      });
+    });
+  </script>
+</head>
+<body class="sapUiBody" id="content"></body>
+</html>

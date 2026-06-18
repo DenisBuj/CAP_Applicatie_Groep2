@@ -45,7 +45,7 @@ annotate TravelService.Airlines with @(
 };
 
 // ============================================================================
-// Airports  (TripPin Airports — read-only)  FR-010
+// Airports  (TripPin Airports — read-only)  FR-009
 // ============================================================================
 annotate TravelService.Airports with @(
   UI: {
@@ -69,38 +69,12 @@ annotate TravelService.Airports with @(
   Name     @title: 'Naam';
 };
 
-// ============================================================================
-// AirlineExtensions  (draft editing: PreferredVendor)  FR-009
-// ============================================================================
-annotate TravelService.AirlineExtensions with @(
-  UI: {
-    HeaderInfo: {
-      $Type          : 'UI.HeaderInfoType',
-      TypeName       : 'Airline-extensie',
-      TypeNamePlural : 'Airline-extensies',
-      Title          : { $Type: 'UI.DataField', Value: AirlineCode },
-      Description    : { $Type: 'UI.DataField', Value: PreferredVendor }
-    },
-    LineItem : [
-      { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
-      { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
-    ],
-    Facets : [
-      { $Type: 'UI.ReferenceFacet', ID: 'EditFacet',
-        Label: 'Airline-gegevens', Target: '@UI.FieldGroup#EditFields' }
-    ],
-    // FR-009: HR/Admin markeert airline als voorkeursleverancier
-    FieldGroup #EditFields : {
-      Data : [
-        { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
-        { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
-      ]
-    }
-  }
-) {
-  AirlineCode     @title: 'Code'                  @readonly;
-  PreferredVendor @title: 'Voorkeursleverancier';
-};
+// NB: het BEWERKEN van PreferredVendor (AirlineExtensions) zit bewust NIET in
+// deze HR/Admin-app. De Functionele Analyse §3 stelt HR/Admin uitdrukkelijk
+// "uitsluitend raadplegend (read-only)" en legt het beheer van de
+// voorkeursairlines bij de Travel Coördinator (FR-010/FR-011). Het bewerken
+// gebeurt daarom in de Trips-app (zie app/explorer/trips/annotations.cds).
+// Hier wordt PreferredVendor enkel getoond ("zichtbaar voor alle gebruikers").
 
 // ============================================================================
 // KPISummary  (singleton — HR/Admin startoverzicht)  FR-001

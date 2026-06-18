@@ -37,6 +37,11 @@ service TravelService @(path: '/travel') {
         ext.PrimePathProjectCode as PrimePathProjectCode,
         // drill-down: de reizen van deze medewerker (reisgeschiedenis)
         trips                    as Trips : redirected to Trips
+  } actions {
+    // FR-005: projectcode beheren rechtstreeks op het medewerkersprofiel.
+    // Persisteert in EmployeeExtension (PrimePath-data) en houdt de Trips-replica
+    // synchroon zodat het projectcode-filter (FR-002) blijft kloppen.
+    action setProjectCode( ProjectCode : String(40) );
   };
 
   /**
@@ -56,6 +61,9 @@ service TravelService @(path: '/travel') {
         Budget,
         Status,
         CostCenter,
+        ProjectCode,
+        DestinationCountry,
+        DestinationAirport,
         // 0=neutraal (Gepland), 2=oranje (Onderweg), 3=groen (Afgerond)
         virtual null as StatusCriticality : Integer,
         // drill-down terug naar de medewerker
@@ -80,8 +88,10 @@ service TravelService @(path: '/travel') {
         AirlineName,
         FromAirport,
         FromAirportName,
+        FromCountry,
         ToAirport,
         ToAirportName,
+        ToCountry,
         StartsAt,
         EndsAt,
         // navigaties voor drill-down (TA §4: associaties naar Airline en Airport)

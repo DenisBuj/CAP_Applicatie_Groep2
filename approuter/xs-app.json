@@ -1,5 +1,5 @@
 {
-  "welcomeFile": "/primepathexplorertrips/index.html",
+  "welcomeFile": "/launchpad/flp.html",
   "authenticationMethod": "none",
   "routes": [
     {
@@ -7,6 +7,12 @@
       "target": "/travel/$1",
       "destination": "primepath-srv-api",
       "csrfProtection": false
+    },
+    {
+      "source": "^/launchpad/(.*)$",
+      "target": "$1",
+      "localDir": "launchpad",
+      "authenticationType": "none"
     },
     {
       "source": "^/(.*)$",

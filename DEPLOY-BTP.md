@@ -92,10 +92,19 @@ cf apps
 # open de route van 'primepath-approuter' in de browser
 ```
 
-De approuter `welcomeFile` opent de Trips-app. De andere apps:
+De approuter `welcomeFile` opent de **Fiori Launchpad** (`/launchpad/flp.html`) met
+de drie apps als tegels. Vandaaruit start je elke app via zijn tegel.
+
+Rechtstreekse app-URL's (zonder launchpad) blijven ook werken:
 - `/primepath.explorer.trips/index.html`
 - `/primepath.explorer.employees/index.html`
 - `/primepath.explorer.airlines/index.html`
+
+> De launchpad laadt SAPUI5 + de ushell-sandbox van de publieke UI5-CDN
+> (`https://ui5.sap.com`). De drie apps worden uit de HTML5 App Repository geladen
+> op hun repo-pad (= `sap.app.id`). Komt er na deploy geen tegel tevoorschijn,
+> controleer dan in de browser-console of de app-componenten (`/primepath.explorer.*`)
+> een 200 geven via de approuter-route naar `html5-apps-repo-rt`.
 
 ---
 
@@ -117,4 +126,5 @@ Verwijderen: `cf undeploy primepath-travel-dashboard --delete-services`
 | Airlines/Airports leeg in prod | `TripPin`-destination ontbreekt of fout (2b) |
 | `token expired` | `cf login` (stap 1) |
 | Wit scherm na deploy | Browser-cache → hard refresh (Cmd+Shift+R) / incognito |
+| Lege launchpad / geen tegels | App-componenten geven geen 200 via `html5-apps-repo-rt`, of UI5-CDN geblokkeerd → check browser-console (Network) |
 | Trial verlopen | BTP-trial verloopt elke 30 dagen → in cockpit verlengen |

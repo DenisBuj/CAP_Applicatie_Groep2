@@ -16,10 +16,10 @@
     "start": "cds-serve",
     "watch": "cds watch",
     "build": "cds build --production",
-    "open-trips":      "open http://localhost:4004/explorer/trips/webapp/index.html",
-    "open-employees":  "open http://localhost:4004/explorer/employees/webapp/index.html",
-    "open-airlines":   "open http://localhost:4004/explorer/airlines/webapp/index.html",
-    "open-all":        "open http://localhost:4004/explorer/trips/webapp/index.html && open http://localhost:4004/explorer/employees/webapp/index.html && open http://localhost:4004/explorer/airlines/webapp/index.html"
+    "open":            "open http://localhost:4004/",
+    "open-trips":      "open http://localhost:4004/index.html#Trips-display",
+    "open-employees":  "open http://localhost:4004/index.html#Employees-display",
+    "open-airlines":   "open http://localhost:4004/index.html#Airlines-display"
   },
   "dependencies": {
     "@cap-js/hana": "^2",

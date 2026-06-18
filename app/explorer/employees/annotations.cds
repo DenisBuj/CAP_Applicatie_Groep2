@@ -24,8 +24,11 @@ annotate TravelService.Employees with @(
     Facets : [
       { $Type: 'UI.ReferenceFacet', ID: 'GegevensFacet',
         Label: 'Gegevens',          Target: '@UI.FieldGroup#Details' },
+      // FR-004: reisgeschiedenis + geplande trips, chronologisch gesorteerd.
+      // Doel = de PresentationVariant van Trips (SortOrder op StartsAt), zodat de
+      // ingebedde tabel echt chronologisch laadt i.p.v. in willekeurige DB-volgorde.
       { $Type: 'UI.ReferenceFacet', ID: 'ReizenFacet',
-        Label: 'Reisgeschiedenis',  Target: 'Trips/@UI.LineItem' }
+        Label: 'Reisgeschiedenis',  Target: 'Trips/@UI.PresentationVariant' }
     ],
     FieldGroup #Details : {
       Data : [
@@ -36,7 +39,13 @@ annotate TravelService.Employees with @(
         { $Type: 'UI.DataField', Value: Age,                  Label: 'Leeftijd' },
         { $Type: 'UI.DataField', Value: PrimePathProjectCode, Label: 'Projectcode' }
       ]
-    }
+    },
+    // FR-005: projectcode beheren rechtstreeks op het profiel (knop op de Object Page).
+    Identification : [
+      { $Type : 'UI.DataFieldForAction',
+        Action: 'TravelService.setProjectCode',
+        Label : 'Projectcode bijwerken' }
+    ]
   }
 ) {
   UserName             @title: 'Gebruikersnaam';

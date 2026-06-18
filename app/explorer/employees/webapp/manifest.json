@@ -15,6 +15,21 @@
           "odataVersion": "4.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Employees-display": {
+          "semanticObject": "Employees",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "subTitle": "{{appSubTitle}}",
+          "icon": "sap-icon://employee",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {

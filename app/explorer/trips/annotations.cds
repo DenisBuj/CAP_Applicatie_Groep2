@@ -12,14 +12,18 @@ annotate TravelService.Trips with @(
       Title          : { $Type: 'UI.DataField', Value: Name },
       Description    : { $Type: 'UI.DataField', Value: Owner }
     },
-    // FR-002/FR-006: filterbaar op periode, status en kostenplaats
-    SelectionFields : [ StartsAt, EndsAt, Status, CostCenter ],
+    // FR-002/FR-006 + hoofdvraag: filterbaar op periode (datumbereik), reisstatus,
+    // projectcode én bestemming (land + aankomstluchthaven — "naar de VS / via welke luchthaven").
+    SelectionFields : [ StartsAt, EndsAt, Status, ProjectCode, DestinationCountry, DestinationAirport ],
     LineItem : [
       { $Type: 'UI.DataField', Value: TripId,              Label: 'Reis-ID' },
       { $Type: 'UI.DataField', Value: Name,                Label: 'Naam' },
       { $Type: 'UI.DataField', Value: Employee.FirstName,  Label: 'Voornaam' },
       { $Type: 'UI.DataField', Value: Employee.LastName,   Label: 'Achternaam' },
+      { $Type: 'UI.DataField', Value: DestinationCountry,  Label: 'Bestemming (land)' },
+      { $Type: 'UI.DataField', Value: DestinationAirport,  Label: 'Aankomstluchthaven' },
       { $Type: 'UI.DataField', Value: Status,              Label: 'Status',      Criticality: StatusCriticality },
+      { $Type: 'UI.DataField', Value: ProjectCode,         Label: 'Projectcode' },
       { $Type: 'UI.DataField', Value: CostCenter,          Label: 'Kostenplaats' },
       { $Type: 'UI.DataField', Value: Budget,              Label: 'Budget' },
       { $Type: 'UI.DataField', Value: StartsAt,            Label: 'Vertrek' },
@@ -44,9 +48,12 @@ annotate TravelService.Trips with @(
     FieldGroup #TripDetails : {
       Data : [
         { $Type: 'UI.DataField', Value: TripId,      Label: 'Reis-ID' },
-        { $Type: 'UI.DataField', Value: Name,        Label: 'Naam' },
-        { $Type: 'UI.DataField', Value: Description, Label: 'Omschrijving' },
-        { $Type: 'UI.DataField', Value: Owner,       Label: 'Medewerker' },
+        { $Type: 'UI.DataField', Value: Name,               Label: 'Naam' },
+        { $Type: 'UI.DataField', Value: Description,        Label: 'Omschrijving' },
+        { $Type: 'UI.DataField', Value: Owner,              Label: 'Medewerker' },
+        { $Type: 'UI.DataField', Value: DestinationCountry, Label: 'Bestemming (land)' },
+        { $Type: 'UI.DataField', Value: DestinationAirport, Label: 'Aankomstluchthaven' },
+        { $Type: 'UI.DataField', Value: ProjectCode,        Label: 'Projectcode' },
         { $Type: 'UI.DataField', Value: Status,      Label: 'Status',      Criticality: StatusCriticality },
         { $Type: 'UI.DataField', Value: CostCenter,  Label: 'Kostenplaats' },
         { $Type: 'UI.DataField', Value: Budget,      Label: 'Budget' },
@@ -61,6 +68,9 @@ annotate TravelService.Trips with @(
   Owner       @title: 'Medewerker';
   Status      @title: 'Status';
   CostCenter  @title: 'Kostenplaats';
+  ProjectCode @title: 'Projectcode';
+  DestinationCountry @title: 'Bestemming (land)';
+  DestinationAirport @title: 'Aankomstluchthaven';
   Budget      @title: 'Budget'  @Measures.ISOCurrency: 'EUR';
   StartsAt    @title: 'Vertrek';
   EndsAt      @title: 'Terug';
@@ -137,4 +147,42 @@ annotate TravelService.TripExtensions with @(
   TripId     @title: 'Reis-ID'      @readonly;
   Status     @title: 'Status';
   CostCenter @title: 'Kostenplaats';
+};
+
+// ============================================================================
+// AirlineExtensions  (draft editing: PreferredVendor)  FR-010/FR-011
+// ----------------------------------------------------------------------------
+// De Travel Coördinator beheert de voorkeursairlines (FA §3: "hij houdt de
+// reisstatus, projectcodes, kostenplaatsen en voorkeursairlines up-to-date";
+// FR-010: "beheerd door de travel coördinator"). Daarom hoort dit beheer in de
+// Trips-app van de coördinator en NIET in de read-only HR/Admin-app.
+// ============================================================================
+annotate TravelService.AirlineExtensions with @(
+  UI: {
+    HeaderInfo: {
+      $Type          : 'UI.HeaderInfoType',
+      TypeName       : 'Voorkeursairline',
+      TypeNamePlural : 'Voorkeursairlines',
+      Title          : { $Type: 'UI.DataField', Value: AirlineCode },
+      Description    : { $Type: 'UI.DataField', Value: PreferredVendor }
+    },
+    LineItem : [
+      { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
+      { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
+    ],
+    Facets : [
+      { $Type: 'UI.ReferenceFacet', ID: 'EditFacet',
+        Label: 'Airline-gegevens', Target: '@UI.FieldGroup#EditFields' }
+    ],
+    // FR-010: Travel Coördinator markeert airline als voorkeursleverancier
+    FieldGroup #EditFields : {
+      Data : [
+        { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
+        { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
+      ]
+    }
+  }
+) {
+  AirlineCode     @title: 'Code'                  @readonly;
+  PreferredVendor @title: 'Voorkeursleverancier';
 };

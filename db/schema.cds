@@ -61,8 +61,10 @@ entity Flights {
       AirlineName     : String(100);  // naam van de airline (uit TripPin bij replicatie)
       FromAirport     : String(4);    // ICAO-code vertrekhaven
       FromAirportName : String(100);  // naam van de vertrekhaven (uit TripPin)
+      FromCountry     : String(100);  // land van de vertrekhaven (TripPin Location.City.CountryRegion)
       ToAirport       : String(4);    // ICAO-code aankomstluchthaven
       ToAirportName   : String(100);  // naam van de aankomstluchthaven (uit TripPin)
+      ToCountry       : String(100);  // land van de aankomstluchthaven (TripPin Location.City.CountryRegion)
       StartsAt        : DateTime;
       EndsAt          : DateTime;
 }
@@ -84,6 +86,14 @@ entity Trips {
       Budget      : Decimal(15, 2);
       Status      : TripStatus default #Gepland;
       CostCenter  : String(40);
+      // FR-002: projectcode van de reizende medewerker, mee gerepliceerd vanuit
+      // EmployeeExtension zodat reizen op DB-niveau op projectcode filterbaar zijn.
+      ProjectCode : String(40);
+      // Bestemming afgeleid uit de vluchten (aankomstluchthaven van de laatste vlucht),
+      // zodat de coördinator op land/luchthaven kan filteren ("wie reist naar de VS
+      // en via welke luchthaven?"). Gevuld na de Flights-replicatie.
+      DestinationCountry : String(100);
+      DestinationAirport : String(100);
 }
 
 /**

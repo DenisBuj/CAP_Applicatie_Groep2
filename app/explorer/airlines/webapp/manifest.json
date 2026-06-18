@@ -15,6 +15,21 @@
           "odataVersion": "4.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Airlines-display": {
+          "semanticObject": "Airlines",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "subTitle": "{{appSubTitle}}",
+          "icon": "sap-icon://airplane",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {
@@ -45,12 +60,10 @@
     },
     "routing": {
       "routes": [
-        { "pattern": ":?query:",                             "name": "KPISummaryPage",              "target": "KPISummaryPage" },
-        { "pattern": "Airlines:?query:",                     "name": "AirlinesList",                "target": "AirlinesList" },
+        { "pattern": ":?query:",                             "name": "AirlinesList",                "target": "AirlinesList" },
         { "pattern": "Airlines({key}):?query:",              "name": "AirlinesObjectPage",          "target": "AirlinesObjectPage" },
         { "pattern": "Airports:?query:",                     "name": "AirportsList",                "target": "AirportsList" },
-        { "pattern": "AirlineExtensions:?query:",            "name": "AirlineExtensionsList",       "target": "AirlineExtensionsList" },
-        { "pattern": "AirlineExtensions({key}):?query:",     "name": "AirlineExtensionsObjectPage", "target": "AirlineExtensionsObjectPage" }
+        { "pattern": "KPISummary:?query:",                   "name": "KPISummaryPage",              "target": "KPISummaryPage" }
       ],
       "targets": {
         "KPISummaryPage": {
@@ -76,6 +89,17 @@
                 "Airlines": {
                   "detail": { "route": "AirlinesObjectPage" }
                 }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "actions": {
+                    "openKPIs": {
+                      "press": "primepath.explorer.airlines.ext.ListReportExtend.openKPIOverview",
+                      "text": "{{action_openKPIs}}",
+                      "position": { "placement": "After" }
+                    }
+                  }
+                }
               }
             }
           }
@@ -99,33 +123,6 @@
               "contextPath": "/Airports",
               "variantManagement": "Page",
               "initialLoad": true
-            }
-          }
-        },
-        "AirlineExtensionsList": {
-          "type": "Component",
-          "id": "AirlineExtensionsList",
-          "name": "sap.fe.templates.ListReport",
-          "options": {
-            "settings": {
-              "contextPath": "/AirlineExtensions",
-              "variantManagement": "Page",
-              "initialLoad": true,
-              "navigation": {
-                "AirlineExtensions": {
-                  "detail": { "route": "AirlineExtensionsObjectPage" }
-                }
-              }
-            }
-          }
-        },
-        "AirlineExtensionsObjectPage": {
-          "type": "Component",
-          "id": "AirlineExtensionsObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "contextPath": "/AirlineExtensions"
             }
           }
         }

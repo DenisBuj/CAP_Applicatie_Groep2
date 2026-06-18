@@ -19,6 +19,7 @@ module.exports = class TravelService extends cds.ApplicationService {
         await replicatePeople(trippin);
         await replicateTrips(trippin);
         await replicateFlights();
+        await updateTripDestinations();
       } catch (e) {
         cds.log('travel').warn('Replicatie mislukt:', e.message);
       }
@@ -71,6 +72,39 @@ module.exports = class TravelService extends cds.ApplicationService {
       const { Owner, TripId } = req.data ?? {};
       if (Owner && TripId != null)
         await UPDATE(Trips).where({ Owner, TripId }).with({ Status: 'Gepland', CostCenter: '' });
+    });
+
+    // EmployeeExtensions CRUD: projectcode synchroon houden in de Trips-replica
+    // zodat het projectcode-filter (FR-002) op de reizen meteen klopt.
+    this.after(['CREATE', 'UPDATE'], 'EmployeeExtensions', async (data) => {
+      const { Trips } = cds.entities('primepath');
+      for (const ext of toArray(data)) {
+        if (!ext.UserName || ext.PrimePathProjectCode === undefined) continue;
+        await UPDATE(Trips).where({ Owner: ext.UserName }).with({ ProjectCode: ext.PrimePathProjectCode ?? '' });
+      }
+    });
+
+    this.after('DELETE', 'EmployeeExtensions', async (_, req) => {
+      const { Trips } = cds.entities('primepath');
+      const { UserName } = req.data ?? {};
+      if (UserName) await UPDATE(Trips).where({ Owner: UserName }).with({ ProjectCode: '' });
+    });
+
+    // FR-005: projectcode beheren vanaf het medewerkersprofiel (bound action).
+    // Schrijft naar EmployeeExtension en synchroniseert de Trips-replica.
+    this.on('setProjectCode', 'Employees', async (req) => {
+      const { EmployeeExtension, Trips } = cds.entities('primepath');
+      const key  = req.params[req.params.length - 1];
+      const UserName = typeof key === 'object' ? key.UserName : key;
+      const code = req.data.ProjectCode ?? '';
+      if (!UserName) return req.error(400, 'Geen medewerker geselecteerd');
+
+      const existing = await SELECT.one.from(EmployeeExtension).where({ UserName });
+      if (existing) await UPDATE(EmployeeExtension).where({ UserName }).with({ PrimePathProjectCode: code });
+      else          await INSERT.into(EmployeeExtension).entries({ UserName, PrimePathProjectCode: code });
+
+      await UPDATE(Trips).where({ Owner: UserName }).with({ ProjectCode: code });
+      return req.notify?.(`Projectcode bijgewerkt naar "${code || '(leeg)'}"`);
     });
 
     // ---- KPI-functies (FR-001) -------------------------------------------
@@ -182,7 +216,7 @@ async function replicatePeople(trippin) {
  * Reizen zonder extensie krijgen default Status='Gepland' en CostCenter=''.
  */
 async function replicateTrips(trippin) {
-  const { Trips, TripExtension } = cds.entities('primepath');
+  const { Trips, TripExtension, EmployeeExtension } = cds.entities('primepath');
   const people = await trippin.run(
     SELECT.from('TripPinService.People').columns(
       'UserName',
@@ -197,7 +231,7 @@ async function replicateTrips(trippin) {
         Owner: person.UserName, TripId: t.TripId,
         Name: t.Name ?? '', Description: t.Description ?? '',
         StartsAt: t.StartsAt, EndsAt: t.EndsAt, Budget: t.Budget,
-        Status: 'Gepland', CostCenter: '',
+        Status: 'Gepland', CostCenter: '', ProjectCode: '',
       });
     }
   }
@@ -208,6 +242,14 @@ async function replicateTrips(trippin) {
   for (const row of rows) {
     const ext = extMap.get(`${row.Owner}/${row.TripId}`);
     if (ext) { row.Status = ext.Status ?? 'Gepland'; row.CostCenter = ext.CostCenter ?? ''; }
+  }
+
+  // FR-002: projectcode per medewerker meenemen zodat reizen op projectcode
+  // filterbaar zijn (de projectcode hoort bij de Owner via EmployeeExtension).
+  const empExts = await SELECT.from(EmployeeExtension);
+  const projByUser = new Map(empExts.map((e) => [e.UserName, e.PrimePathProjectCode ?? '']));
+  for (const row of rows) {
+    row.ProjectCode = projByUser.get(row.Owner) ?? '';
   }
 
   await DELETE.from(Trips);
@@ -279,16 +321,46 @@ async function replicateFlights() {
           AirlineName:     f.Airline?.Name        ?? '',
           FromAirport:     f.From?.IcaoCode       ?? '',
           FromAirportName: f.From?.Name           ?? '',
+          FromCountry:     f.From?.Location?.City?.CountryRegion ?? '',
           ToAirport:       f.To?.IcaoCode         ?? '',
           ToAirportName:   f.To?.Name             ?? '',
+          ToCountry:       f.To?.Location?.City?.CountryRegion   ?? '',
           StartsAt:        f.StartsAt ?? ref.StartsAt,
           EndsAt:          f.EndsAt   ?? ref.EndsAt,
         };
-      } catch { return { ...ref, AirlineCode: '', AirlineName: '', FromAirport: '', FromAirportName: '', ToAirport: '', ToAirportName: '' }; }
+      } catch { return { ...ref, AirlineCode: '', AirlineName: '', FromAirport: '', FromAirportName: '', FromCountry: '', ToAirport: '', ToAirportName: '', ToCountry: '' }; }
     }))
   ).filter(Boolean);
 
   await DELETE.from(Flights);
   if (rows.length) await INSERT.into(Flights).entries(rows);
   cds.log('travel').info(`Flights-replicatie: ${rows.length} vluchten uit TripPin`);
+}
+
+/**
+ * Leidt per reis de bestemming (land + aankomstluchthaven) af uit de vluchten,
+ * zodat de coördinator de reizenlijst op land/luchthaven kan filteren
+ * ("wie reist naar de VS en via welke luchthaven?"). De bestemming = de
+ * aankomst van de laatste vlucht van de reis (op StartsAt). Reizen zonder
+ * gerepliceerde vlucht blijven leeg (TripPin levert niet voor elke reis vluchten).
+ */
+async function updateTripDestinations() {
+  const { Trips, Flights } = cds.entities('primepath');
+  const flights = await SELECT.from(Flights)
+    .columns('Owner', 'TripId', 'ToAirportName', 'ToCountry', 'StartsAt')
+    .orderBy('StartsAt');
+
+  // Op StartsAt oplopend → de laatste die we per reis zien is de verste aankomst.
+  const lastArrival = new Map();
+  for (const f of flights) lastArrival.set(`${f.Owner}/${f.TripId}`, f);
+
+  let updated = 0;
+  for (const f of lastArrival.values()) {
+    await UPDATE(Trips).where({ Owner: f.Owner, TripId: f.TripId }).with({
+      DestinationCountry: f.ToCountry ?? '',
+      DestinationAirport: f.ToAirportName ?? '',
+    });
+    updated++;
+  }
+  cds.log('travel').info(`Bestemmingen afgeleid voor ${updated} reizen`);
 }
