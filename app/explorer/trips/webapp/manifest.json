@@ -63,9 +63,7 @@
         { "pattern": ":?query:", "name": "TripsList", "target": "TripsList" },
         { "pattern": "Trips({key}):?query:", "name": "TripsObjectPage", "target": "TripsObjectPage" },
         { "pattern": "TripExtensions:?query:", "name": "TripExtensionsList", "target": "TripExtensionsList" },
-        { "pattern": "TripExtensions({key}):?query:", "name": "TripExtensionsObjectPage", "target": "TripExtensionsObjectPage" },
-        { "pattern": "AirlineExtensions:?query:", "name": "AirlineExtensionsList", "target": "AirlineExtensionsList" },
-        { "pattern": "AirlineExtensions({key}):?query:", "name": "AirlineExtensionsObjectPage", "target": "AirlineExtensionsObjectPage" }
+        { "pattern": "TripExtensions({key}):?query:", "name": "TripExtensionsObjectPage", "target": "TripExtensionsObjectPage" }
       ],
       "targets": {
         "TripsList": {
@@ -119,33 +117,6 @@
           "options": {
             "settings": {
               "contextPath": "/TripExtensions"
-            }
-          }
-        },
-        "AirlineExtensionsList": {
-          "type": "Component",
-          "id": "AirlineExtensionsList",
-          "name": "sap.fe.templates.ListReport",
-          "options": {
-            "settings": {
-              "contextPath": "/AirlineExtensions",
-              "variantManagement": "Page",
-              "initialLoad": true,
-              "navigation": {
-                "AirlineExtensions": {
-                  "detail": { "route": "AirlineExtensionsObjectPage" }
-                }
-              }
-            }
-          }
-        },
-        "AirlineExtensionsObjectPage": {
-          "type": "Component",
-          "id": "AirlineExtensionsObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "contextPath": "/AirlineExtensions"
             }
           }
         }

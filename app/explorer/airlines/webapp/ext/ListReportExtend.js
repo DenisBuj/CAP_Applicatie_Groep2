@@ -13,6 +13,15 @@ sap.ui.define([], function () {
       if (oRouting && oRouting.navigateToRoute) {
         oRouting.navigateToRoute("KPISummaryPage");
       }
+    },
+
+    // FR-010/FR-011: voorkeursairlines beheren (PreferredVendor) — draft-editing
+    // op AirlineExtensions, bewerkbaar in de Airlines/Insights-app.
+    openVendorManagement: function () {
+      var oRouting = this.routing || (this.getRouting && this.getRouting());
+      if (oRouting && oRouting.navigateToRoute) {
+        oRouting.navigateToRoute("AirlineExtensionsList");
+      }
     }
   };
 });

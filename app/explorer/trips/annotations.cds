@@ -149,40 +149,6 @@ annotate TravelService.TripExtensions with @(
   CostCenter @title: 'Kostenplaats';
 };
 
-// ============================================================================
-// AirlineExtensions  (draft editing: PreferredVendor)  FR-010/FR-011
-// ----------------------------------------------------------------------------
-// De Travel Coördinator beheert de voorkeursairlines (FA §3: "hij houdt de
-// reisstatus, projectcodes, kostenplaatsen en voorkeursairlines up-to-date";
-// FR-010: "beheerd door de travel coördinator"). Daarom hoort dit beheer in de
-// Trips-app van de coördinator en NIET in de read-only HR/Admin-app.
-// ============================================================================
-annotate TravelService.AirlineExtensions with @(
-  UI: {
-    HeaderInfo: {
-      $Type          : 'UI.HeaderInfoType',
-      TypeName       : 'Voorkeursairline',
-      TypeNamePlural : 'Voorkeursairlines',
-      Title          : { $Type: 'UI.DataField', Value: AirlineCode },
-      Description    : { $Type: 'UI.DataField', Value: PreferredVendor }
-    },
-    LineItem : [
-      { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
-      { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
-    ],
-    Facets : [
-      { $Type: 'UI.ReferenceFacet', ID: 'EditFacet',
-        Label: 'Airline-gegevens', Target: '@UI.FieldGroup#EditFields' }
-    ],
-    // FR-010: Travel Coördinator markeert airline als voorkeursleverancier
-    FieldGroup #EditFields : {
-      Data : [
-        { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
-        { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
-      ]
-    }
-  }
-) {
-  AirlineCode     @title: 'Code'                  @readonly;
-  PreferredVendor @title: 'Voorkeursleverancier';
-};
+// NB: het bewerken van PreferredVendor (AirlineExtensions) zit volgens de
+// Technische Analyse §6 (FR-010/FR-011) in de Airlines/Insights-app, niet hier.
+// Zie app/explorer/airlines/annotations.cds.

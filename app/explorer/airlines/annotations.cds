@@ -69,12 +69,44 @@ annotate TravelService.Airports with @(
   Name     @title: 'Naam';
 };
 
-// NB: het BEWERKEN van PreferredVendor (AirlineExtensions) zit bewust NIET in
-// deze HR/Admin-app. De Functionele Analyse §3 stelt HR/Admin uitdrukkelijk
-// "uitsluitend raadplegend (read-only)" en legt het beheer van de
-// voorkeursairlines bij de Travel Coördinator (FR-010/FR-011). Het bewerken
-// gebeurt daarom in de Trips-app (zie app/explorer/trips/annotations.cds).
-// Hier wordt PreferredVendor enkel getoond ("zichtbaar voor alle gebruikers").
+// ============================================================================
+// AirlineExtensions  (draft editing: PreferredVendor)  FR-010/FR-011
+// ----------------------------------------------------------------------------
+// Technische Analyse §6 FR-010: "Boolean-veld PreferredVendor op
+// AirlineExtensions, bewerkbaar in de Airlines/Insights-app." Het toekennen van
+// de Preferred-Vendor-status gebeurt dus hier, via draft-enabled editing op de
+// extensie-entiteit (CRUD). Op de Airlines-lijst/objectpagina wordt de status
+// daarnaast read-only getoond ("zichtbaar voor alle gebruikers").
+// ============================================================================
+annotate TravelService.AirlineExtensions with @(
+  UI: {
+    HeaderInfo: {
+      $Type          : 'UI.HeaderInfoType',
+      TypeName       : 'Voorkeursairline',
+      TypeNamePlural : 'Voorkeursairlines',
+      Title          : { $Type: 'UI.DataField', Value: AirlineCode },
+      Description    : { $Type: 'UI.DataField', Value: PreferredVendor }
+    },
+    LineItem : [
+      { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
+      { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
+    ],
+    Facets : [
+      { $Type: 'UI.ReferenceFacet', ID: 'EditFacet',
+        Label: 'Airline-gegevens', Target: '@UI.FieldGroup#EditFields' }
+    ],
+    // FR-010: HR/Admin markeert airline als voorkeursleverancier
+    FieldGroup #EditFields : {
+      Data : [
+        { $Type: 'UI.DataField', Value: AirlineCode,     Label: 'Code' },
+        { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' }
+      ]
+    }
+  }
+) {
+  AirlineCode     @title: 'Code'                  @readonly;
+  PreferredVendor @title: 'Voorkeursleverancier';
+};
 
 // ============================================================================
 // KPISummary  (singleton — HR/Admin startoverzicht)  FR-001
