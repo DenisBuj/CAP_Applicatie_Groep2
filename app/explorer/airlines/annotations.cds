@@ -35,7 +35,13 @@ annotate TravelService.Airlines with @(
         { $Type: 'UI.DataField', Value: PreferredVendor, Label: 'Voorkeursleverancier' },
         { $Type: 'UI.DataField', Value: FlightCount,     Label: 'Aantal vluchten' }
       ]
-    }
+    },
+    // FR-010: knop op de airline-objectpagina om de preferred-vendor-status te zetten
+    Identification : [
+      { $Type : 'UI.DataFieldForAction',
+        Action: 'TravelService.setPreferredVendor',
+        Label : 'Preferred vendor instellen' }
+    ]
   }
 ) {
   AirlineCode     @title: 'Code';

@@ -60,7 +60,13 @@ annotate TravelService.Trips with @(
         { $Type: 'UI.DataField', Value: StartsAt,    Label: 'Vertrek' },
         { $Type: 'UI.DataField', Value: EndsAt,      Label: 'Terug' }
       ]
-    }
+    },
+    // FR-008/FR-011: knop op de reis-objectpagina om status + kostenplaats te beheren
+    Identification : [
+      { $Type : 'UI.DataFieldForAction',
+        Action: 'TravelService.setTripData',
+        Label : 'Status & kostenplaats bijwerken' }
+    ]
   }
 ) {
   TripId      @title: 'Reis-ID';

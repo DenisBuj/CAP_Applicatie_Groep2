@@ -107,6 +107,39 @@ module.exports = class TravelService extends cds.ApplicationService {
       return req.notify?.(`Projectcode bijgewerkt naar "${code || '(leeg)'}"`);
     });
 
+    // FR-008/FR-011: reisstatus + kostenplaats beheren vanaf de reis-objectpagina
+    // (Travel Coördinator). Schrijft naar TripExtension en synct de Trips-replica.
+    this.on('setTripData', 'Trips', async (req) => {
+      const { TripExtension, Trips } = cds.entities('primepath');
+      const key = req.params[req.params.length - 1] ?? {};
+      const Owner = key.Owner;
+      const TripId = key.TripId;
+      if (!Owner || TripId == null) return req.error(400, 'Geen reis geselecteerd');
+      const Status     = req.data.Status     ?? 'Gepland';
+      const CostCenter = req.data.CostCenter ?? '';
+
+      const existing = await SELECT.one.from(TripExtension).where({ Owner, TripId });
+      if (existing) await UPDATE(TripExtension).where({ Owner, TripId }).with({ Status, CostCenter });
+      else          await INSERT.into(TripExtension).entries({ Owner, TripId, Status, CostCenter });
+
+      await UPDATE(Trips).where({ Owner, TripId }).with({ Status, CostCenter });
+      return req.notify?.(`Reis bijgewerkt — status: ${Status}, kostenplaats: ${CostCenter || '(leeg)'}`);
+    });
+
+    // FR-010: preferred-vendor-status toekennen vanaf de airline-objectpagina (HR).
+    this.on('setPreferredVendor', 'Airlines', async (req) => {
+      const { AirlineExtension } = cds.entities('primepath');
+      const key = req.params[req.params.length - 1] ?? {};
+      const AirlineCode = typeof key === 'object' ? key.AirlineCode : key;
+      if (!AirlineCode) return req.error(400, 'Geen airline geselecteerd');
+      const pv = req.data.PreferredVendor ?? false;
+
+      const existing = await SELECT.one.from(AirlineExtension).where({ AirlineCode });
+      if (existing) await UPDATE(AirlineExtension).where({ AirlineCode }).with({ PreferredVendor: pv });
+      else          await INSERT.into(AirlineExtension).entries({ AirlineCode, PreferredVendor: pv });
+      return req.notify?.(`Preferred vendor ${pv ? 'aangezet' : 'uitgezet'} voor ${AirlineCode}`);
+    });
+
     // ---- KPI-functies (FR-001) -------------------------------------------
 
     /**

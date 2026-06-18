@@ -71,6 +71,10 @@ service TravelService @(path: '/travel') {
         // drill-down naar de vluchten van deze reis (FR-007)
         Flights  : Association to many Flights
                      on Flights.Owner = Owner and Flights.TripId = TripId
+  } actions {
+    // FR-008/FR-011: reisstatus + kostenplaats beheren rechtstreeks op de reis-objectpagina
+    // (Travel Coördinator). Persisteert in TripExtension en houdt de Trips-replica synchroon.
+    action setTripData( Status : primepath.TripStatus, CostCenter : String(40) );
   };
 
   /**
@@ -113,6 +117,10 @@ service TravelService @(path: '/travel') {
         Name,
         virtual false as PreferredVendor : Boolean,
         virtual 0     as FlightCount     : Integer
+  } actions {
+    // FR-010: preferred-vendor-status toekennen rechtstreeks op de airline-objectpagina.
+    // Persisteert in AirlineExtension (de Airlines-after-handler toont de waarde read-only).
+    action setPreferredVendor( PreferredVendor : Boolean );
   };
 
   /**
