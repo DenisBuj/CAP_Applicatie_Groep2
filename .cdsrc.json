@@ -30,8 +30,7 @@
       },
       "[production]": {
         "credentials": {
-          "destination": "TripPin",
-          "path": "/"
+          "url": "https://services.odata.org/TripPinRESTierService"
         }
       }
     }

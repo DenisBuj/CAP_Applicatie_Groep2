@@ -48,9 +48,9 @@
                   isVisible: true,
                   isGroupLocked: false,
                   tiles: [
-                    { id: "tileTrips",     tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Reisbeheer",              subtitle: "Travel Coördinator", icon: "sap-icon://flight",   targetURL: "#Trips-display" } },
-                    { id: "tileEmployees", tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Teambeschikbaarheid",      subtitle: "Team Lead",          icon: "sap-icon://employee", targetURL: "#Employees-display" } },
-                    { id: "tileAirlines",  tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Vendor Insights & KPI's",  subtitle: "HR Manager",         icon: "sap-icon://airplane", targetURL: "#Airlines-display" } }
+                    { id: "tileTrips",     tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Travel Coördinator", subtitle: "Reisbeheer — reizen, filters & PrimePath-data", icon: "sap-icon://flight",   targetURL: "#Trips-display" } },
+                    { id: "tileEmployees", tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "Team Lead",          subtitle: "Teambeschikbaarheid — reisgeschiedenis & trips", icon: "sap-icon://employee", targetURL: "#Employees-display" } },
+                    { id: "tileAirlines",  tileType: "sap.ushell.ui.tile.StaticTile", properties: { title: "HR Manager",         subtitle: "Vendor Insights & KPI's (read-only)",           icon: "sap-icon://airplane", targetURL: "#Airlines-display" } }
                   ]
                 }
               ]
@@ -60,24 +60,24 @@
       },
       applications: {
         "Trips-display": {
-          title: "Reisbeheer",
-          description: "Travel Coördinator — reizen zoeken/filteren & PrimePath-data beheren",
+          title: "Travel Coördinator",
+          description: "Reisbeheer — reizen zoeken/filteren & PrimePath-data beheren",
           additionalInformation: "SAPUI5.Component=primepath.explorer.trips",
           applicationType: "URL",
           url: "explorer/trips/webapp",
           navigationMode: "embedded"
         },
         "Employees-display": {
-          title: "Teambeschikbaarheid",
-          description: "Team Lead — reisgeschiedenis & geplande trips per medewerker",
+          title: "Team Lead",
+          description: "Teambeschikbaarheid — reisgeschiedenis & geplande trips per medewerker",
           additionalInformation: "SAPUI5.Component=primepath.explorer.employees",
           applicationType: "URL",
           url: "explorer/employees/webapp",
           navigationMode: "embedded"
         },
         "Airlines-display": {
-          title: "Vendor Insights & KPI's",
-          description: "HR Manager — KPI's, meest gebruikte airlines & luchthavens (read-only)",
+          title: "HR Manager",
+          description: "Vendor Insights & KPI's — meest gebruikte airlines & luchthavens (read-only)",
           additionalInformation: "SAPUI5.Component=primepath.explorer.airlines",
           applicationType: "URL",
           url: "explorer/airlines/webapp",
