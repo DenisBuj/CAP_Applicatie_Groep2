@@ -36,14 +36,25 @@ entity EmployeeExtension : managed {
  * Combineert via associaties met de verrijking en de reizen.
  */
 entity People {
-  key UserName   : String(255);
-      FirstName  : String;
-      LastName   : String;
-      MiddleName : String;
-      Gender     : String;
-      Age        : Integer;
-      ext        : Association to one EmployeeExtension on ext.UserName = UserName;
-      trips      : Association to many Trips on trips.Owner = UserName;
+  key UserName    : String(255);
+      FirstName   : String;
+      LastName    : String;
+      MiddleName  : String;
+      Gender      : String;
+      Age         : Integer;
+      // Beschikbaarheid/planning voor de Team Lead — afgeleid uit de Trips bij
+      // replicatie en bijgewerkt bij elke statuswijziging. Echte kolommen zodat ze
+      // filterbaar/sorteerbaar zijn en niet van $select afhangen.
+      IsTraveling             : Boolean default false;  // heeft een 'Onderweg'-reis
+      HasPlannedTrip          : Boolean default false;  // heeft een 'Gepland'-reis
+      Availability            : String(20);             // "Op reis" / "Beschikbaar"
+      AvailabilityCriticality : Integer;                // 2 = oranje, 3 = groen
+      PlannedLabel            : String(20);             // "Gepland" / "—"
+      ext         : Association to one EmployeeExtension on ext.UserName = UserName;
+      trips       : Association to many Trips on trips.Owner = UserName;
+      // enkel de geplande reizen (status 'Gepland') — planningssectie Team Lead
+      plannedTrips: Association to many Trips on plannedTrips.Owner = UserName
+                                             and plannedTrips.Status = 'Gepland';
 }
 
 /**

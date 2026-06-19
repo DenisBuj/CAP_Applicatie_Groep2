@@ -34,9 +34,18 @@ service TravelService @(path: '/travel') {
         MiddleName,
         Gender,
         Age,
+        // Beschikbaarheid + planning (Team Lead) — echte, vooraf berekende kolommen.
+        IsTraveling,
+        Availability,
+        AvailabilityCriticality,
+        HasPlannedTrip,
+        PlannedLabel,
         ext.PrimePathProjectCode as PrimePathProjectCode,
         // drill-down: de reizen van deze medewerker (reisgeschiedenis)
-        trips                    as Trips : redirected to Trips
+        trips                    as Trips : redirected to Trips,
+        // enkel de GEPLANDE reizen (status 'Gepland') — voor de planningssectie
+        // (waar & wanneer iemand ingepland is) bij de Team Lead.
+        plannedTrips             as PlannedTrips : redirected to Trips
   } actions {
     // FR-005: projectcode beheren rechtstreeks op het medewerkersprofiel.
     // Persisteert in EmployeeExtension (PrimePath-data) en houdt de Trips-replica
@@ -192,4 +201,15 @@ service TravelService @(path: '/travel') {
 
   @odata.draft.enabled
   entity AirlineExtensions as projection on primepath.AirlineExtension;
+
+  // ---------------------------------------------------------------------------
+  // Value-help voor de reisstatus → vaste-waarden dropdown in filterbalk én editor
+  // (gevuld in srv/travel-service.js). FR-008.
+  // ---------------------------------------------------------------------------
+  @readonly
+  @cds.persistence.skip
+  entity TripStatusValues {
+    key code : String(20);
+        name : String(20);
+  }
 }

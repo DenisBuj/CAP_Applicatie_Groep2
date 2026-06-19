@@ -62,6 +62,7 @@
       "routes": [
         { "pattern": ":?query:", "name": "EmployeesList", "target": "EmployeesList" },
         { "pattern": "Employees({key}):?query:", "name": "EmployeesObjectPage", "target": "EmployeesObjectPage" },
+        { "pattern": "Employees({key})/Trips({key2}):?query:", "name": "EmployeeTripDetail", "target": "EmployeeTripDetail" },
         { "pattern": "EmployeeExtensions:?query:", "name": "EmployeeExtensionsList", "target": "EmployeeExtensionsList" },
         { "pattern": "EmployeeExtensions({key}):?query:", "name": "EmployeeExtensionsObjectPage", "target": "EmployeeExtensionsObjectPage" }
       ],
@@ -89,7 +90,22 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "contextPath": "/Employees"
+              "contextPath": "/Employees",
+              "navigation": {
+                "Trips": {
+                  "detail": { "route": "EmployeeTripDetail" }
+                }
+              }
+            }
+          }
+        },
+        "EmployeeTripDetail": {
+          "type": "Component",
+          "id": "EmployeeTripDetail",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Employees/Trips"
             }
           }
         },

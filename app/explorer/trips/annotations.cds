@@ -158,3 +158,51 @@ annotate TravelService.TripExtensions with @(
 // NB: het bewerken van PreferredVendor (AirlineExtensions) zit volgens de
 // Technische Analyse §6 (FR-010/FR-011) in de Airlines/Insights-app, niet hier.
 // Zie app/explorer/airlines/annotations.cds.
+
+// ============================================================================
+// Reisstatus → vaste-waarden dropdown (Gepland / Onderweg / Afgerond)
+// in de filterbalk én in de TripExtensions-editor. FR-008.
+// ============================================================================
+annotate TravelService.Trips with {
+  Status @Common.ValueListWithFixedValues @Common.ValueList: {
+    $Type         : 'Common.ValueListType',
+    CollectionPath: 'TripStatusValues',
+    Parameters    : [
+      { $Type: 'Common.ValueListParameterInOut',       LocalDataProperty: Status, ValueListProperty: 'code' },
+      { $Type: 'Common.ValueListParameterDisplayOnly',                            ValueListProperty: 'name' }
+    ]
+  };
+};
+
+annotate TravelService.TripExtensions with {
+  Status @Common.ValueListWithFixedValues @Common.ValueList: {
+    $Type         : 'Common.ValueListType',
+    CollectionPath: 'TripStatusValues',
+    Parameters    : [
+      { $Type: 'Common.ValueListParameterInOut',       LocalDataProperty: Status, ValueListProperty: 'code' },
+      { $Type: 'Common.ValueListParameterDisplayOnly',                            ValueListProperty: 'name' }
+    ]
+  };
+};
+
+// ============================================================================
+// Action-dialog "Status & kostenplaats bijwerken" (setTripData): de Status-
+// parameter moet dezelfde vaste-waarden dropdown (Gepland/Onderweg/Afgerond)
+// tonen als de filterbalk. Zonder deze ValueList op de actie-parameter rendert
+// Fiori Elements een vrij tekstveld i.p.v. de dropdown. FR-008.
+// ============================================================================
+annotate TravelService.Trips with actions {
+  setTripData(
+    Status @title: 'Status'
+           @Common.ValueListWithFixedValues
+           @Common.ValueList: {
+      $Type         : 'Common.ValueListType',
+      CollectionPath: 'TripStatusValues',
+      Parameters    : [
+        { $Type: 'Common.ValueListParameterInOut',       LocalDataProperty: Status, ValueListProperty: 'code' },
+        { $Type: 'Common.ValueListParameterDisplayOnly',                            ValueListProperty: 'name' }
+      ]
+    },
+    CostCenter @title: 'Kostenplaats'
+  );
+};

@@ -20,6 +20,7 @@ module.exports = class TravelService extends cds.ApplicationService {
         await replicateTrips(trippin);
         await replicateFlights();
         await updateTripDestinations();
+        await updateAvailability();
       } catch (e) {
         cds.log('travel').warn('Replicatie mislukt:', e.message);
       }
@@ -54,9 +55,13 @@ module.exports = class TravelService extends cds.ApplicationService {
         r.StatusCriticality = CRITICALITY[r.Status] ?? 1;
     });
 
-    // TripExtensions CRUD: Status/CostCenter synchroon houden in lokale Trips-tabel
+    // TripExtensions CRUD: Status/CostCenter synchroon houden in lokale Trips-tabel.
+    // Net als de bound action setTripData moet hier ook de beschikbaarheid van de
+    // medewerker herberekend worden, anders raakt de "Op reis"-kolom (Team Lead)
+    // verouderd wanneer de status via de draft-editor i.p.v. de actie wordt gewijzigd.
     this.after(['CREATE', 'UPDATE'], 'TripExtensions', async (data) => {
       const { Trips } = cds.entities('primepath');
+      const owners = new Set();
       for (const ext of toArray(data)) {
         if (!ext.Owner || ext.TripId == null) continue;
         const patch = {};
@@ -64,14 +69,18 @@ module.exports = class TravelService extends cds.ApplicationService {
         if (ext.CostCenter !== undefined) patch.CostCenter = ext.CostCenter ?? '';
         if (Object.keys(patch).length)
           await UPDATE(Trips).where({ Owner: ext.Owner, TripId: ext.TripId }).with(patch);
+        if (patch.Status !== undefined) owners.add(ext.Owner);
       }
+      for (const owner of owners) await recomputeAvailabilityFor(owner);
     });
 
     this.after('DELETE', 'TripExtensions', async (_, req) => {
       const { Trips } = cds.entities('primepath');
       const { Owner, TripId } = req.data ?? {};
-      if (Owner && TripId != null)
+      if (Owner && TripId != null) {
         await UPDATE(Trips).where({ Owner, TripId }).with({ Status: 'Gepland', CostCenter: '' });
+        await recomputeAvailabilityFor(Owner);
+      }
     });
 
     // EmployeeExtensions CRUD: projectcode synchroon houden in de Trips-replica
@@ -123,6 +132,10 @@ module.exports = class TravelService extends cds.ApplicationService {
       else          await INSERT.into(TripExtension).entries({ Owner, TripId, Status, CostCenter });
 
       await UPDATE(Trips).where({ Owner, TripId }).with({ Status, CostCenter });
+
+      // Beschikbaarheid + planning van de medewerker herberekenen
+      await recomputeAvailabilityFor(Owner);
+
       return req.notify?.(`Reis bijgewerkt — status: ${Status}, kostenplaats: ${CostCenter || '(leeg)'}`);
     });
 
@@ -139,6 +152,13 @@ module.exports = class TravelService extends cds.ApplicationService {
       else          await INSERT.into(AirlineExtension).entries({ AirlineCode, PreferredVendor: pv });
       return req.notify?.(`Preferred vendor ${pv ? 'aangezet' : 'uitgezet'} voor ${AirlineCode}`);
     });
+
+    // Value-help voor de reisstatus (vaste-waarden dropdown in filter + editor).
+    this.on('READ', 'TripStatusValues', () => ([
+      { code: 'Gepland',  name: 'Gepland'  },
+      { code: 'Onderweg', name: 'Onderweg' },
+      { code: 'Afgerond', name: 'Afgerond' },
+    ]));
 
     // ---- KPI-functies (FR-001) -------------------------------------------
 
@@ -396,4 +416,47 @@ async function updateTripDestinations() {
     updated++;
   }
   cds.log('travel').info(`Bestemmingen afgeleid voor ${updated} reizen`);
+}
+
+/**
+ * Beschikbaarheid van medewerkers afleiden voor de Team Lead: een medewerker is
+ * "op reis" als hij minstens één reis met status 'Onderweg' heeft. Wordt bij boot
+ * berekend (na de Trips-replicatie) en daarna bijgewerkt bij elke statuswijziging.
+ */
+/** Bouwt de beschikbaarheids-/planningsvelden op uit de twee booleans. */
+function availabilityFields(traveling, planned) {
+  return {
+    IsTraveling:             !!traveling,
+    HasPlannedTrip:          !!planned,
+    Availability:            traveling ? 'Op reis' : 'Beschikbaar',
+    AvailabilityCriticality: traveling ? 2 : 3,
+    PlannedLabel:            planned ? 'Gepland' : '—',
+  };
+}
+
+/**
+ * Herberekent de beschikbaarheids-/planningsvelden voor één medewerker op basis
+ * van de actuele reisstatussen in de Trips-replica. Gebruikt door zowel de
+ * bound action setTripData als de TripExtensions draft-CRUD, zodat de "Op reis"-
+ * kolom (Team Lead) nooit verouderd raakt — ongeacht hoe de status wijzigt.
+ */
+async function recomputeAvailabilityFor(Owner) {
+  if (!Owner) return;
+  const { People, Trips } = cds.entities('primepath');
+  const onTrip  = await SELECT.one.from(Trips).where({ Owner, Status: 'Onderweg' });
+  const planned = await SELECT.one.from(Trips).where({ Owner, Status: 'Gepland' });
+  await UPDATE(People).where({ UserName: Owner }).with(availabilityFields(onTrip, planned));
+}
+
+async function updateAvailability() {
+  const { People, Trips } = cds.entities('primepath');
+  const onderweg = await SELECT.from(Trips).columns('Owner').where({ Status: 'Onderweg' });
+  const gepland  = await SELECT.from(Trips).columns('Owner').where({ Status: 'Gepland' });
+  const traveling = new Set(onderweg.map((t) => t.Owner));
+  const planned   = new Set(gepland.map((t) => t.Owner));
+  const people = await SELECT.from(People).columns('UserName');
+  for (const p of people)
+    await UPDATE(People).where({ UserName: p.UserName })
+      .with(availabilityFields(traveling.has(p.UserName), planned.has(p.UserName)));
+  cds.log('travel').info(`Beschikbaarheid: ${traveling.size} op reis, ${planned.size} met geplande reis`);
 }

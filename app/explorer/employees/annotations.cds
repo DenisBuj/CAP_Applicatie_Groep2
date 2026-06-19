@@ -12,19 +12,26 @@ annotate TravelService.Employees with @(
       Title          : { $Type: 'UI.DataField', Value: FirstName },
       Description    : { $Type: 'UI.DataField', Value: UserName }
     },
-    // FR-003/FR-004: zoeken op naam + projectcode
-    SelectionFields : [ FirstName, LastName, PrimePathProjectCode ],
+    // FR-003/FR-004: zoeken op naam + projectcode + filteren op beschikbaarheid/planning
+    SelectionFields : [ FirstName, LastName, PrimePathProjectCode, IsTraveling, HasPlannedTrip ],
     LineItem : [
       { $Type: 'UI.DataField', Value: UserName,             Label: 'Gebruikersnaam' },
       { $Type: 'UI.DataField', Value: FirstName,            Label: 'Voornaam' },
       { $Type: 'UI.DataField', Value: LastName,             Label: 'Achternaam' },
+      // Beschikbaarheid: gekleurd (oranje "Op reis" / groen "Beschikbaar") — voor inplannen
+      { $Type: 'UI.DataField', Value: Availability,         Label: 'Beschikbaarheid', Criticality: AvailabilityCriticality },
+      // Geplande reis: "Gepland" of "—" — direct overzicht wie al ingepland is
+      { $Type: 'UI.DataField', Value: PlannedLabel,         Label: 'Geplande reis' },
       { $Type: 'UI.DataField', Value: PrimePathProjectCode, Label: 'Projectcode' }
     ],
     // ---- Object Page ----
     Facets : [
       { $Type: 'UI.ReferenceFacet', ID: 'GegevensFacet',
         Label: 'Gegevens',          Target: '@UI.FieldGroup#Details' },
-      // FR-004: reisgeschiedenis + geplande trips, chronologisch gesorteerd.
+      // Planning: enkel de GEPLANDE reizen — waar & wanneer iemand ingepland is.
+      { $Type: 'UI.ReferenceFacet', ID: 'GeplandeReizenFacet',
+        Label: 'Geplande reizen',   Target: 'PlannedTrips/@UI.PresentationVariant' },
+      // FR-004: volledige reisgeschiedenis + geplande trips, chronologisch gesorteerd.
       // Doel = de PresentationVariant van Trips (SortOrder op StartsAt), zodat de
       // ingebedde tabel echt chronologisch laadt i.p.v. in willekeurige DB-volgorde.
       { $Type: 'UI.ReferenceFacet', ID: 'ReizenFacet',
@@ -37,6 +44,8 @@ annotate TravelService.Employees with @(
         { $Type: 'UI.DataField', Value: LastName,             Label: 'Achternaam' },
         { $Type: 'UI.DataField', Value: Gender,               Label: 'Geslacht' },
         { $Type: 'UI.DataField', Value: Age,                  Label: 'Leeftijd' },
+        { $Type: 'UI.DataField', Value: Availability,         Label: 'Beschikbaarheid', Criticality: AvailabilityCriticality },
+        { $Type: 'UI.DataField', Value: PlannedLabel,         Label: 'Geplande reis' },
         { $Type: 'UI.DataField', Value: PrimePathProjectCode, Label: 'Projectcode' }
       ]
     },
@@ -54,6 +63,10 @@ annotate TravelService.Employees with @(
   MiddleName           @title: 'Tweede naam';
   Gender               @title: 'Geslacht';
   Age                  @title: 'Leeftijd';
+  IsTraveling          @title: 'Op reis';
+  Availability         @title: 'Beschikbaarheid';
+  HasPlannedTrip       @title: 'Geplande reis';
+  PlannedLabel         @title: 'Geplande reis';
   PrimePathProjectCode @title: 'Projectcode';
 };
 
