@@ -129,3 +129,29 @@ entity AirlineExtension : managed {
   key AirlineCode     : String(3);
       PreferredVendor  : Boolean default false;
 }
+
+/**
+ * Lokale replica van TripPin `Airlines` — bij het opstarten gevuld vanuit de
+ * remote service (zie srv/travel-service.js: replicateAirlines). Lokaal nodig
+ * zodat de HR/Insights-app niet bij élke request live van de (trage/flaky)
+ * TripPin-service afhangt: de live-delegatie veroorzaakte een "internal server
+ * error" zodra de remote traag was of een timeout gaf. Verrijking
+ * (PreferredVendor, FlightCount) gebeurt in de Airlines-after-handler.
+ */
+entity Airlines {
+  key AirlineCode : String(3);
+      Name        : String(100);
+}
+
+/**
+ * Lokale replica van TripPin `Airports` — bij het opstarten gevuld vanuit de
+ * remote service (zie srv/travel-service.js: replicateAirports). Net als
+ * Airlines lokaal gehouden zodat de app read-only en stabiel werkt zonder
+ * runtime-afhankelijkheid van de remote service. Location bewust weggelaten
+ * (genest complex-type — buiten MVP-scope).
+ */
+entity Airports {
+  key IcaoCode : String(4);
+      IataCode : String(3);
+      Name     : String(100);
+}

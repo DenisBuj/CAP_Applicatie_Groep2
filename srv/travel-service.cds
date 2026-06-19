@@ -117,11 +117,13 @@ service TravelService @(path: '/travel') {
   };
 
   /**
-   * Airlines: TripPin Airlines + AirlineExtension (PreferredVendor) +
-   * FlightCount berekend uit lokale Flights-tabel (FR-009).
+   * Airlines: lokale Airlines-replica + AirlineExtension (PreferredVendor) +
+   * FlightCount berekend uit lokale Flights-tabel (FR-009). De replica wordt bij
+   * boot gevuld vanuit TripPin (replicateAirlines), zodat de HR-app niet live van
+   * de remote service afhangt en geen "internal server error" geeft bij traagheid.
    */
   @readonly
-  entity Airlines as projection on trippin.Airlines {
+  entity Airlines as projection on primepath.Airlines {
     key AirlineCode,
         Name,
         virtual false as PreferredVendor : Boolean,
@@ -133,14 +135,14 @@ service TravelService @(path: '/travel') {
   };
 
   /**
-   * Airports: uitsluitend TripPin (geen verrijking).
-   * NB: TripPin's `Location` is een genest complex-type dat CAP uitplat naar
-   * Location_Address/Location_City_* — die platte namen bestaan niet op de remote
-   * en breken de $select-delegatie (502). Bewust weggelaten in de MVP; geneste
-   * Location-ondersteuning is een follow-up.
+   * Airports: lokale Airports-replica (geen verrijking), bij boot gevuld vanuit
+   * TripPin (replicateAirports). Lokaal gehouden om dezelfde reden als Airlines:
+   * geen runtime-afhankelijkheid van de remote service.
+   * NB: TripPin's `Location` is een genest complex-type; bewust weggelaten in de
+   * MVP (geneste Location-ondersteuning is een follow-up).
    */
   @readonly
-  entity Airports as projection on trippin.Airports {
+  entity Airports as projection on primepath.Airports {
     key IcaoCode,
         IataCode,
         Name

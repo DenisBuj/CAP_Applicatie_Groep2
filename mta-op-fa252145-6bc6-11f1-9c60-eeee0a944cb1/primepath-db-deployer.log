@@ -1,0 +1,636 @@
+#2026 06 19 10:10:04.383#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:09:54.720213] Updated app with guid 7516dab9-b438-4358-8940-ece5e13ee096 ({"lifecycle"=>{"data"=>{"buildpacks"=>["nodejs_buildpack"]}, "type"=>"buildpack"}}) (STDOUT, API)#
+#2026 06 19 10:10:04.383#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:09:54.805622] Updating process: "web" (STDOUT, API)#
+#2026 06 19 10:10:04.383#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:09:57.005009] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 creating container for instance e5facd2c-1077-4ae0-bb5c-73b006042f02 (STDOUT, CELL)#
+#2026 06 19 10:10:04.383#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:09:57.885685] Security group rules were updated (STDOUT, CELL)#
+#2026 06 19 10:10:04.383#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:09:57.997114] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully created container for instance e5facd2c-1077-4ae0-bb5c-73b006042f02 (STDOUT, CELL)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:05.436723] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:05.639869] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.074105] > start (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.074137] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231540] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231742] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231758] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231762] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231765] "name": "primepath-db", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231768] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231770] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231780] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231783] "schema": "09A7375F229F49B788B42B3C726266FE", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231788] "database_id": "ecd4b5a0-88b3-46d0-8f77-773d9a39408b", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231792] "user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_RT", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231795] "hdi_user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_DT" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231797] }, (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231799] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231800] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231806] "database", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231808] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231810] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231812] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231814] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231816] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.488670] @sap/hdi-deploy, version 5.6.1 (mode default), server version unknown (0.0.0.0), cloud version , node version 24.15.0, HDI version -1, container API version -1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.488939] Deployment started at 2026-06-19 10:10:10 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489211] Using hdb@2.29.4 for connection (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489238] Detection of server version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489416] Detection of cloud version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489425] Detection of container API version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489462] Detection of HDI version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.490019] Deployment ended at 2026-06-19 10:10:10 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.490246] Error: Option parameter is not supported by the server; based on detected server version unknown (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.490711] (4s 370ms) (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505637] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505665] npm notice New minor version of npm available! 11.12.1 -> 11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505669] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505673] npm notice To update run: npm install -g npm@11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505675] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.580661] Exit status 1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.896161] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance e5facd2c-1077-4ae0-bb5c-73b006042f02 (STDOUT, CELL)#
+#2026 06 19 10:10:14.405#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-311#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.896207] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance e5facd2c-1077-4ae0-bb5c-73b006042f02 (STDOUT, CELL)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:05.436723] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:05.639869] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.074105] > start (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.074137] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231540] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231742] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231758] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231762] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231765] "name": "primepath-db", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231768] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231770] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231780] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231783] "schema": "09A7375F229F49B788B42B3C726266FE", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231788] "database_id": "ecd4b5a0-88b3-46d0-8f77-773d9a39408b", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231792] "user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_RT", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231795] "hdi_user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_DT" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231797] }, (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231799] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231800] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231806] "database", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231808] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231810] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231812] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231814] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:06.231816] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.488670] @sap/hdi-deploy, version 5.6.1 (mode default), server version unknown (0.0.0.0), cloud version , node version 24.15.0, HDI version -1, container API version -1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.488939] Deployment started at 2026-06-19 10:10:10 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489211] Using hdb@2.29.4 for connection (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489238] Detection of server version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489416] Detection of cloud version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489425] Detection of container API version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.489462] Detection of HDI version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.490019] Deployment ended at 2026-06-19 10:10:10 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.490246] Error: Option parameter is not supported by the server; based on detected server version unknown (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.490711] (4s 370ms) (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505637] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505665] npm notice New minor version of npm available! 11.12.1 -> 11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505669] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505673] npm notice To update run: npm install -g npm@11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.505675] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.580661] Exit status 1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.896161] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance e5facd2c-1077-4ae0-bb5c-73b006042f02 (STDOUT, CELL)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:10.896207] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance e5facd2c-1077-4ae0-bb5c-73b006042f02 (STDOUT, CELL)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:14.391193] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance e5facd2c-1077-4ae0-bb5c-73b006042f02 (STDOUT, CELL)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:15.899303] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 creating container for instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:16.847492] Security group rules were updated (STDOUT, CELL)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:16.961027] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully created container for instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:24.206983] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:24.830#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-310#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:24.405321] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:24.877474] > start (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:24.877516] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038736] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038979] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038996] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038999] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039004] "name": "primepath-db", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039007] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039010] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039012] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039015] "schema": "09A7375F229F49B788B42B3C726266FE", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039017] "database_id": "ecd4b5a0-88b3-46d0-8f77-773d9a39408b", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039021] "user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_RT", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039024] "hdi_user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_DT" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039032] }, (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039036] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039038] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039041] "database", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039043] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039046] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039048] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039049] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039051] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.282782] @sap/hdi-deploy, version 5.6.1 (mode default), server version unknown (0.0.0.0), cloud version , node version 24.15.0, HDI version -1, container API version -1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.282865] Deployment started at 2026-06-19 10:10:29 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283169] Using hdb@2.29.4 for connection (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283187] Detection of server version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283191] Detection of cloud version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283194] Detection of container API version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283199] Detection of HDI version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.284926] Deployment ended at 2026-06-19 10:10:29 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.285099] Error: Option parameter is not supported by the server; based on detected server version unknown (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.285522] (4s 355ms) (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300937] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300961] npm notice New minor version of npm available! 11.12.1 -> 11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300964] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300967] npm notice To update run: npm install -g npm@11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300973] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.377284] Exit status 1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:31.246729] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:31.246780] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:34.987#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-319#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:33.540145] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:24.877474] > start (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:24.877516] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038736] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038979] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038996] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.038999] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039004] "name": "primepath-db", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039007] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039010] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039012] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039015] "schema": "09A7375F229F49B788B42B3C726266FE", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039017] "database_id": "ecd4b5a0-88b3-46d0-8f77-773d9a39408b", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039021] "user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_RT", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039024] "hdi_user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_DT" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039032] }, (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039036] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039038] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039041] "database", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039043] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039046] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039048] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039049] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:25.039051] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.282782] @sap/hdi-deploy, version 5.6.1 (mode default), server version unknown (0.0.0.0), cloud version , node version 24.15.0, HDI version -1, container API version -1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.282865] Deployment started at 2026-06-19 10:10:29 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283169] Using hdb@2.29.4 for connection (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283187] Detection of server version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283191] Detection of cloud version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283194] Detection of container API version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.283199] Detection of HDI version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.284926] Deployment ended at 2026-06-19 10:10:29 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.285099] Error: Option parameter is not supported by the server; based on detected server version unknown (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.285522] (4s 355ms) (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300937] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300961] npm notice New minor version of npm available! 11.12.1 -> 11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300964] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300967] npm notice To update run: npm install -g npm@11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.300973] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:29.377284] Exit status 1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:31.246729] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:31.246780] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:33.540145] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance 558694ad-4c25-40bd-9705-f37881178f60 (STDOUT, CELL)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:38.315085] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 creating container for instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:39.175791] Security group rules were updated (STDOUT, CELL)#
+#2026 06 19 10:10:45.025#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-318#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:39.284857] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully created container for instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:44.759807] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:44.968167] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.447306] > start (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.447338] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614506] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614774] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614791] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614794] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614797] "name": "primepath-db", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614801] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614803] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614809] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614813] "schema": "09A7375F229F49B788B42B3C726266FE", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614816] "database_id": "ecd4b5a0-88b3-46d0-8f77-773d9a39408b", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614820] "user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_RT", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614825] "hdi_user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_DT" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614831] }, (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614833] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614836] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614838] "database", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614839] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614842] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614844] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614846] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614849] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864057] @sap/hdi-deploy, version 5.6.1 (mode default), server version unknown (0.0.0.0), cloud version , node version 24.15.0, HDI version -1, container API version -1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864363] Deployment started at 2026-06-19 10:10:49 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864681] Using hdb@2.29.4 for connection (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864734] Detection of server version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864847] Detection of cloud version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864893] Detection of container API version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.866559] Detection of HDI version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.867216] Deployment ended at 2026-06-19 10:10:49 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.867550] Error: Option parameter is not supported by the server; based on detected server version unknown (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.867956] (4s 374ms) (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884017] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884039] npm notice New minor version of npm available! 11.12.1 -> 11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884042] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884047] npm notice To update run: npm install -g npm@11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884050] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.954488] Exit status 1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:51.166107] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:51.166152] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:10:55.085#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-327#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:53.808084] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:44.759807] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:44.968167] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.447306] > start (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.447338] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614506] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614774] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614791] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614794] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614797] "name": "primepath-db", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614801] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614803] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614809] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614813] "schema": "09A7375F229F49B788B42B3C726266FE", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614816] "database_id": "ecd4b5a0-88b3-46d0-8f77-773d9a39408b", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614820] "user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_RT", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614825] "hdi_user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_DT" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614831] }, (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614833] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614836] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614838] "database", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614839] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614842] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614844] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614846] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:45.614849] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864057] @sap/hdi-deploy, version 5.6.1 (mode default), server version unknown (0.0.0.0), cloud version , node version 24.15.0, HDI version -1, container API version -1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864363] Deployment started at 2026-06-19 10:10:49 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864681] Using hdb@2.29.4 for connection (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864734] Detection of server version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864847] Detection of cloud version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.864893] Detection of container API version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.639#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.866559] Detection of HDI version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.867216] Deployment ended at 2026-06-19 10:10:49 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.867550] Error: Option parameter is not supported by the server; based on detected server version unknown (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.867956] (4s 374ms) (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884017] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884039] npm notice New minor version of npm available! 11.12.1 -> 11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884042] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884047] npm notice To update run: npm install -g npm@11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.884050] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:49.954488] Exit status 1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:51.166107] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:51.166152] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:53.808084] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance 5cb3ddf5-29e2-4a4d-89b4-1cb5ac3004f1 (STDOUT, CELL)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:58.467255] Cell 684caff8-89cd-492b-be01-b3d0835f1763 creating container for instance 52fb9a63-ac54-40e7-9d1c-0232e12eec29 (STDOUT, CELL)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:59.281609] Security group rules were updated (STDOUT, CELL)#
+#2026 06 19 10:11:05.640#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-339#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:10:59.380999] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully created container for instance 52fb9a63-ac54-40e7-9d1c-0232e12eec29 (STDOUT, CELL)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:05.918941] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.125624] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.627350] > start (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.627376] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804278] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804696] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804710] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804717] { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804724] "name": "primepath-db", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804727] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804729] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804731] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804734] "schema": "09A7375F229F49B788B42B3C726266FE", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804737] "database_id": "ecd4b5a0-88b3-46d0-8f77-773d9a39408b", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804740] "user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_RT", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804743] "hdi_user": "09A7375F229F49B788B42B3C726266FE_6O9X1KAR2I0FDBIU1F0AA6V4I_DT" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804745] }, (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804747] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804749] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804752] "database", (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804754] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804758] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804760] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804762] ] (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:06.804764] } (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.040533] @sap/hdi-deploy, version 5.6.1 (mode default), server version unknown (0.0.0.0), cloud version , node version 24.15.0, HDI version -1, container API version -1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.040847] Deployment started at 2026-06-19 10:11:11 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.041098] Using hdb@2.29.4 for connection (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.041111] Detection of server version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.041215] Detection of cloud version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.041267] Detection of container API version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.041321] Detection of HDI version failed; root cause: HANA Database instance is stopped (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.041788] Deployment ended at 2026-06-19 10:11:11 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.042080] Error: Option parameter is not supported by the server; based on detected server version unknown (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.042438] (4s 367ms) (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.059696] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.059726] npm notice New minor version of npm available! 11.12.1 -> 11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.059728] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.059738] npm notice To update run: npm install -g npm@11.17.0 (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.059742] npm notice (STDERR, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:11.132814] Exit status 1 (STDOUT, APP/TASK/deploy)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:12.172989] Cell 684caff8-89cd-492b-be01-b3d0835f1763 stopping instance 52fb9a63-ac54-40e7-9d1c-0232e12eec29 (STDOUT, CELL)#
+#2026 06 19 10:11:15.635#Z#DEBUG#fa252145-6bc6-11f1-9c60-eeee0a944cb1.primepath-db-deployer#flowable-async-job-executor-thread-342#
+[PollExecuteTaskStatusExecution] 7516dab9-b438-4358-8940-ece5e13ee096 [2026-06-19T10:11:12.173034] Cell 684caff8-89cd-492b-be01-b3d0835f1763 destroying container for instance 52fb9a63-ac54-40e7-9d1c-0232e12eec29 (STDOUT, CELL)#

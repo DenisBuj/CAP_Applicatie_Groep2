@@ -9,16 +9,18 @@ module.exports = class TravelService extends cds.ApplicationService {
     const trippin = await cds.connect.to('TripPinService');
     const { AirlineExtension, Flights: PrimeFlights } = cds.entities('primepath');
 
-    // READ-delegatie naar TripPin voor remote-gebaseerde entiteiten
-    this.on('READ', 'Airlines', (req) => trippin.run(req.query));
-    this.on('READ', 'Airports', (req) => trippin.run(req.query));
-
-    // Replicatie bij boot: People, Trips en Flights uit TripPin naar lokale tabellen
+    // Replicatie bij boot: People, Trips, Flights, Airlines en Airports uit TripPin
+    // naar lokale tabellen. Airlines/Airports worden bewust gerepliceerd (i.p.v.
+    // live gedelegeerd met `trippin.run(req.query)`) zodat de HR-app niet bij élke
+    // request van de trage/flaky remote-service afhangt — dat veroorzaakte een
+    // "internal server error" bij het openen zodra TripPin traag was of timeoutte.
     cds.once('served', async () => {
       try {
         await replicatePeople(trippin);
         await replicateTrips(trippin);
         await replicateFlights();
+        await replicateAirlines(trippin);
+        await replicateAirports(trippin);
         await updateTripDestinations();
         await updateAvailability();
       } catch (e) {
@@ -261,6 +263,40 @@ async function replicatePeople(trippin) {
   await DELETE.from(People);
   await INSERT.into(People).entries(rows);
   cds.log('travel').info(`People-replicatie: ${rows.length} medewerkers`);
+}
+
+/**
+ * Repliceert TripPin `Airlines` naar de lokale primepath.Airlines-tabel.
+ * Hierdoor leest de HR/Insights-app (FR-009) uit de DB i.p.v. live van de remote
+ * service — dat voorkomt de "internal server error" bij traagheid/timeouts van
+ * TripPin. PreferredVendor + FlightCount worden in de after-handler toegevoegd.
+ */
+async function replicateAirlines(trippin) {
+  const { Airlines } = cds.entities('primepath');
+  const remote = await trippin.run(
+    SELECT.from('TripPinService.Airlines').columns('AirlineCode', 'Name')
+  );
+  if (!remote.length) return;
+  const rows = remote.map((a) => ({ AirlineCode: a.AirlineCode, Name: a.Name }));
+  await DELETE.from(Airlines);
+  await INSERT.into(Airlines).entries(rows);
+  cds.log('travel').info(`Airlines-replicatie: ${rows.length} airlines uit TripPin`);
+}
+
+/**
+ * Repliceert TripPin `Airports` naar de lokale primepath.Airports-tabel
+ * (geen verrijking). Location bewust weggelaten (genest complex-type, buiten MVP).
+ */
+async function replicateAirports(trippin) {
+  const { Airports } = cds.entities('primepath');
+  const remote = await trippin.run(
+    SELECT.from('TripPinService.Airports').columns('IcaoCode', 'IataCode', 'Name')
+  );
+  if (!remote.length) return;
+  const rows = remote.map((a) => ({ IcaoCode: a.IcaoCode, IataCode: a.IataCode, Name: a.Name }));
+  await DELETE.from(Airports);
+  await INSERT.into(Airports).entries(rows);
+  cds.log('travel').info(`Airports-replicatie: ${rows.length} luchthavens uit TripPin`);
 }
 
 /**
